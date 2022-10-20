@@ -1,0 +1,170 @@
+status url redirect,status,url,redirect,suggested
+Correct http://www.air-worldwide.com/,Correct,http://www.air-worldwide.com/,,
+Correct https://amof.ac.uk/instruments/cao-nlc-camera/,Correct,https://amof.ac.uk/instruments/cao-nlc-camera/,,
+Correct https://catalogue.ceda.ac.uk/uuid/836daab8d626442ea9b8d0474125a446,Correct,https://catalogue.ceda.ac.uk/uuid/836daab8d626442ea9b8d0474125a446,,
+Correct https://catalogue.ceda.ac.uk/uuid/f717a8ea622f495397f4e76f777349d1,Correct,https://catalogue.ceda.ac.uk/uuid/f717a8ea622f495397f4e76f777349d1,,
+Correct https://meetingorganizer.copernicus.org/EGU2019/EGU2019-16513.pdf,Correct,https://meetingorganizer.copernicus.org/EGU2019/EGU2019-16513.pdf,,
+Correct https://rd-alliance.org/groups/rdawds-publishing-data-bibliometrics-wg.html,Correct,https://rd-alliance.org/groups/rdawds-publishing-data-bibliometrics-wg.html,,
+Correct https://www.metoffice.gov.uk/,Correct,https://www.metoffice.gov.uk/,,
+Error http://aslo.org/lo/toc/vol_47/issue_1/0053.pdf,Error,http://aslo.org/lo/toc/vol_47/issue_1/0053.pdf,,https://www.aslo.org/
+Error http://badc.nerc.ac.uk/data/aaoe/er2.html,Error,http://badc.nerc.ac.uk/data/aaoe/er2.html,,https://catalogue.ceda.ac.uk/uuid/3e0a5f6f470c2b6b436e59a6a7fb8f7d
+Error http://badc.nerc.ac.uk/data/chilbolton/broadband_radiometers.html,Error,http://badc.nerc.ac.uk/data/chilbolton/broadband_radiometers.html,,https://catalogue.ceda.ac.uk/uuid/7cbc3fc19bfa037a48ba4cba4b93544d
+Error http://badc.nerc.ac.uk/data/chilbolton/camra.html,Error,http://badc.nerc.ac.uk/data/chilbolton/camra.html,,https://catalogue.ceda.ac.uk/uuid/7cbc3fc19bfa037a48ba4cba4b93544d
+Error http://badc.nerc.ac.uk/data/chilbolton/cloud_camera.html,Error,http://badc.nerc.ac.uk/data/chilbolton/cloud_camera.html,,https://catalogue.ceda.ac.uk/uuid/7cbc3fc19bfa037a48ba4cba4b93544d
+Error http://badc.nerc.ac.uk/data/chilbolton/disdrometers.html,Error,http://badc.nerc.ac.uk/data/chilbolton/disdrometers.html,,https://catalogue.ceda.ac.uk/uuid/7cbc3fc19bfa037a48ba4cba4b93544d
+Error http://badc.nerc.ac.uk/data/chilbolton/gbs.html,Error,http://badc.nerc.ac.uk/data/chilbolton/gbs.html,,https://catalogue.ceda.ac.uk/uuid/7cbc3fc19bfa037a48ba4cba4b93544d
+Error http://badc.nerc.ac.uk/data/chilbolton/lidar_uv.html,Error,http://badc.nerc.ac.uk/data/chilbolton/lidar_uv.html,,https://catalogue.ceda.ac.uk/uuid/7cbc3fc19bfa037a48ba4cba4b93544d
+Error http://badc.nerc.ac.uk/data/chilbolton/links.html,Error,http://badc.nerc.ac.uk/data/chilbolton/links.html,,https://catalogue.ceda.ac.uk/uuid/7cbc3fc19bfa037a48ba4cba4b93544d
+Error http://badc.nerc.ac.uk/data/chilbolton/radiometer-radiometrics.html,Error,http://badc.nerc.ac.uk/data/chilbolton/radiometer-radiometrics.html,,https://catalogue.ceda.ac.uk/uuid/7cbc3fc19bfa037a48ba4cba4b93544d
+Error http://badc.nerc.ac.uk/data/chilbolton/raingauge2.html,Error,http://badc.nerc.ac.uk/data/chilbolton/raingauge2.html,,https://catalogue.ceda.ac.uk/uuid/7cbc3fc19bfa037a48ba4cba4b93544d
+Error http://badc.nerc.ac.uk/data/chilbolton/vaisala_ceilometer.html,Error,http://badc.nerc.ac.uk/data/chilbolton/vaisala_ceilometer.html,,https://catalogue.ceda.ac.uk/uuid/7cbc3fc19bfa037a48ba4cba4b93544d
+Error http://badc.nerc.ac.uk/data/coapec/comparison.pdf,Error,http://badc.nerc.ac.uk/data/coapec/comparison.pdf,,https://catalogue.ceda.ac.uk/uuid/fce964f2c07f107e3db5fb0a5c09c9b8
+Error http://badc.nerc.ac.uk/data/easoe/documents.html,Error,http://badc.nerc.ac.uk/data/easoe/documents.html,,https://catalogue.ceda.ac.uk/uuid/573d8ec65dd8ae5ee3f779946fbc2497
+Error http://badc.nerc.ac.uk/data/firetracc/firetracc_help.html,Error,http://badc.nerc.ac.uk/data/firetracc/firetracc_help.html,,https://catalogue.ceda.ac.uk/uuid/41a6e20ba98c4913ea6893e2fcb5aec5
+Error http://badc.nerc.ac.uk/data/gome/ers_html/index.html,Error,http://badc.nerc.ac.uk/data/gome/ers_html/index.html,,https://catalogue.ceda.ac.uk/uuid/c9765f8ac44c51a302df55478b97774e
+Error http://badc.nerc.ac.uk/data/gome/figs.html,Error,http://badc.nerc.ac.uk/data/gome/figs.html,,https://catalogue.ceda.ac.uk/uuid/c9765f8ac44c51a302df55478b97774e
+Error http://badc.nerc.ac.uk/data/ufam/csip/pilot.html,Error,http://badc.nerc.ac.uk/data/ufam/csip/pilot.html,,https://catalogue.ceda.ac.uk/uuid/44dfa95b7a2768c006b12fbb2f28799c
+Error http://badc.nerc.ac.uk/help/file_naming.html,Error,http://badc.nerc.ac.uk/help/file_naming.html,,https://help.ceda.ac.uk/article/103-filenames
+Error http://badc.nerc.ac.uk/help/formats/badc-csv/,Error,http://badc.nerc.ac.uk/help/formats/badc-csv/,,https://help.ceda.ac.uk/article/105-badc-csv
+Error http://badc.nerc.ac.uk/help/formats/NASA-Ames/,Error,http://badc.nerc.ac.uk/help/formats/NASA-Ames/,,https://help.ceda.ac.uk/article/4692-nasa-ames
+Error http://coapec.nerc.ac.uk,Error,http://coapec.nerc.ac.uk,,https://gtr.ukri.org/projects?ref=NE%2FE522575%2F5
+Error http://eosweb.larc.nasa.gov/PRODOCS/sage3/table_sage3.html,Error,http://eosweb.larc.nasa.gov/PRODOCS/sage3/table_sage3.html,,https://asdc.larc.nasa.gov/project/SAGE%20III-ISS
+Error http://icr4.org/posters.html,Error,http://icr4.org/posters.html,,http://icr4.org/
+Error http://proj.badc.rl.ac.uk/cedaservices/wiki/JASMIN/IPythonPrototypeProject#no1,Error,http://proj.badc.rl.ac.uk/cedaservices/wiki/JASMIN/IPythonPrototypeProject#no1,,https://www.ceda.ac.uk
+Error http://proj.badc.rl.ac.uk/exarch,Error,http://proj.badc.rl.ac.uk/exarch,,https://www.ceda.ac.uk
+Error http://proj.badc.rl.ac.uk/ojims,Error,http://proj.badc.rl.ac.uk/ojims,,http://www.ariadne.ac.uk/issue/61/callaghan-et-al/
+Error http://search.antarctica.ac.uk/search?q=ofcap&btnG.x=0&btnG.y=0&entqr=0&ud=1&sort=date%3AD%3AL%3Ad1&output=xml_no_dtd&oe=UTF-8&ie=UTF-8&client=default_frontend&proxystylesheet=default_frontend&site=default_collection,Error,http://search.antarctica.ac.uk/search?q=ofcap&btnG.x=0&btnG.y=0&entqr=0&ud=1&sort=date%3AD%3AL%3Ad1&output=xml_no_dtd&oe=UTF-8&ie=UTF-8&client=default_frontend&proxystylesheet=default_frontend&site=default_collection,,https://www.bas.ac.uk/project/ofcap/
+Error http://valor.nerc.ac.uk,Error,http://valor.nerc.ac.uk,,https://gtr.ukri.org/project/0EE96D97-2A27-4AF8-A6BE-62A1E82CAB40?pn=0&fetchSize=50&selectedSortableField=firstAuthorName&selectedSortOrder=ASC
+Error http://www.atm.ox.ac.uk/project/grape/index.html,Error,http://www.atm.ox.ac.uk/project/grape/index.html,,https://catalogue.ceda.ac.uk/uuid/ad2828e7db3436964ed900d8974bd2e8
+Error http://www.bodc.ac.uk/projects/uk/rapid/,Error,http://www.bodc.ac.uk/projects/uk/rapid/,,https://www.bodc.ac.uk/projects/data_management/uk/rapid/
+Error http://www.ceda.ac.uk/help/users-guide/file-formats/,Error,http://www.ceda.ac.uk/help/users-guide/file-formats/,,https://help.ceda.ac.uk/article/104-file-formats
+Error http://www.ceda.ac.uk/ncas-york-2014/,Error,http://www.ceda.ac.uk/ncas-york-2014/,,https://www.ceda.ac.uk/events/
+Error http://www.ceda.ac.uk/training,Error,http://www.ceda.ac.uk/training,,https://www.ceda.ac.uk/events/
+Error http://www.ceh.ac.uk/services/land-cover-map-2000,Error,http://www.ceh.ac.uk/services/land-cover-map-2000,,https://catalogue.ceh.ac.uk/documents/14a9ec05-071a-43a5-a142-e6894f3d6f9d
+Error http://www.e-science.clrc.ac.uk/web/projects/dataportal,Error,http://www.e-science.clrc.ac.uk/web/projects/dataportal,,https://www.bodc.ac.uk/projects/data_management/uk/ndg/
+Error http://www.gewex.org/gewex_nwsltr.html,Error,http://www.gewex.org/gewex_nwsltr.html,,https://www.gewex.org/
+Error http://www.igbp.kva.se,Error,http://www.igbp.kva.se,,http://www.igbp.net/publications/publishedarticlesandbooks/books/booksarchives/challengesofachangingearthproceedingsoftheglobalchangeopenscienceconferenceamsterdam1013july2001.5.1b8ae20512db692f2a6800016025.html
+Error http://www.met-office.gov.uk/sec5/CR_div/CoP5/,Error,http://www.met-office.gov.uk/sec5/CR_div/CoP5/,,https://www.metoffice.gov.uk/weather/climate/met-office-hadley-centre/index
+Error http://www.metoffice.com/,Error,http://www.metoffice.com/,,https://www.metoffice.gov.uk
+Error http://www.metoffice.com/research/hadleycentre/pubs/B2001/global.pdf,Error,http://www.metoffice.com/research/hadleycentre/pubs/B2001/global.pdf,,https://www.metoffice.gov.uk/weather/climate/met-office-hadley-centre/index
+Error http://www.metoffice.com/research/hadleycentre/pubs/brochures/B2002/global.pdf,Error,http://www.metoffice.com/research/hadleycentre/pubs/brochures/B2002/global.pdf,,https://www.metoffice.gov.uk/weather/climate/met-office-hadley-centre/index
+Error http://www.metoffice.com/research/hadleycentre/pubs/brochures/B2002/precis.pdf,Error,http://www.metoffice.com/research/hadleycentre/pubs/brochures/B2002/precis.pdf,,https://www.metoffice.gov.uk/weather/climate/met-office-hadley-centre/index
+Error http://www.metoffice.gov.uk/corporate/legal/framework.pdf,Error,http://www.metoffice.gov.uk/corporate/legal/framework.pdf,,https://www.metoffice.gov.uk
+Error http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet01.pdf,Error,http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet01.pdf,,https://www.metoffice.gov.uk/research/library-and-archive/publications/factsheets
+Error http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet02.pdf,Error,http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet02.pdf,,https://www.metoffice.gov.uk/research/library-and-archive/publications/factsheets
+Error http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet03.pdf,Error,http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet03.pdf,,https://www.metoffice.gov.uk/research/library-and-archive/publications/factsheets
+Error http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet04.pdf,Error,http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet04.pdf,,https://www.metoffice.gov.uk/research/library-and-archive/publications/factsheets
+Error http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet05.pdf,Error,http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet05.pdf,,https://www.metoffice.gov.uk/research/library-and-archive/publications/factsheets
+Error http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet06.pdf,Error,http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet06.pdf,,https://www.metoffice.gov.uk/research/library-and-archive/publications/factsheets
+Error http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet07.pdf,Error,http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet07.pdf,,https://www.metoffice.gov.uk/research/library-and-archive/publications/factsheets
+Error http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet08.pdf,Error,http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet08.pdf,,https://www.metoffice.gov.uk/research/library-and-archive/publications/factsheets
+Error http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet09.pdf,Error,http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet09.pdf,,https://www.metoffice.gov.uk/research/library-and-archive/publications/factsheets
+Error http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet10.pdf,Error,http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet10.pdf,,https://www.metoffice.gov.uk/research/library-and-archive/publications/factsheets
+Error http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet11.pdf,Error,http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet11.pdf,,https://www.metoffice.gov.uk/research/library-and-archive/publications/factsheets
+Error http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet12.pdf,Error,http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet12.pdf,,https://www.metoffice.gov.uk/research/library-and-archive/publications/factsheets
+Error http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet13.pdf,Error,http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet13.pdf,,https://www.metoffice.gov.uk/research/library-and-archive/publications/factsheets
+Error http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet14.pdf,Error,http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet14.pdf,,https://www.metoffice.gov.uk/research/library-and-archive/publications/factsheets
+Error http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet15.pdf,Error,http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet15.pdf,,https://www.metoffice.gov.uk/research/library-and-archive/publications/factsheets
+Error http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet16.pdf,Error,http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet16.pdf,,https://www.metoffice.gov.uk/research/library-and-archive/publications/factsheets
+Error http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet17.pdf,Error,http://www.metoffice.gov.uk/corporate/library/factsheets/factsheet17.pdf,,https://www.metoffice.gov.uk/research/library-and-archive/publications/factsheets
+Error http://www.metoffice.gov.uk/corporate/pressoffice/anniversary/timeline.html,Error,http://www.metoffice.gov.uk/corporate/pressoffice/anniversary/timeline.html,,https://www.metoffice.gov.uk
+Error http://www.metoffice.gov.uk/education/secondary/students/observing_rainfall.html,Error,http://www.metoffice.gov.uk/education/secondary/students/observing_rainfall.html,,https://www.metoffice.gov.uk
+Error http://www.metoffice.gov.uk/publications/brochures/COP10.pdf,Error,http://www.metoffice.gov.uk/publications/brochures/COP10.pdf,,https://www.metoffice.gov.uk
+Error http://www.metoffice.gov.uk/publications/brochures/COP11.pdf,Error,http://www.metoffice.gov.uk/publications/brochures/COP11.pdf,,https://www.metoffice.gov.uk
+Error http://www.metoffice.gov.uk/publications/brochures/COP12.pdf,Error,http://www.metoffice.gov.uk/publications/brochures/COP12.pdf,,https://www.metoffice.gov.uk
+Error http://www.metoffice.gov.uk/publications/brochures/together.pdf,Error,http://www.metoffice.gov.uk/publications/brochures/together.pdf,,https://www.metoffice.gov.uk
+Error http://www.metoffice.gov.uk/publications/together.pdf,Error,http://www.metoffice.gov.uk/publications/together.pdf,,https://www.metoffice.gov.uk
+Error http://www.metoffice.gov.uk/research/hadleycentre/pubs/brochures/B2000/index.html,Error,http://www.metoffice.gov.uk/research/hadleycentre/pubs/brochures/B2000/index.html,,https://www.metoffice.gov.uk/weather/climate/met-office-hadley-centre/index
+Error http://www.msf.rl.ac.uk,Error,http://www.msf.rl.ac.uk,,https://www.ukspacefacilities.stfc.ac.uk/Pages/RAL-Space-Molecular-Spectroscopy-Facility.aspx
+Error http://www.noc.soton.ac.uk/rapid/rw/index.php,Error,http://www.noc.soton.ac.uk/rapid/rw/index.php,,https://www.bodc.ac.uk/projects/data_management/uk/rapid/
+Error http://www.qos2004.gr/,Error,http://www.qos2004.gr/,,http://lap.physics.auth.gr/ozone2004/index.asp
+Error http://www.sstd.rl.ac.uk/hirdls/,Error,http://www.sstd.rl.ac.uk/hirdls/,,https://www.ralspace.stfc.ac.uk/Pages/home.aspx
+Error http://www.stfc.ac.uk/RALSpace/News+and+events/RAL+Celebrates+50+Years+of+Space/11055.aspx,Error,http://www.stfc.ac.uk/RALSpace/News+and+events/RAL+Celebrates+50+Years+of+Space/11055.aspx,,https://www.ralspace.stfc.ac.uk/Pages/home.aspx
+Error http://www.tr32db.uni-koeln.de/workshop/acceptedPosters.php,Error,http://www.tr32db.uni-koeln.de/workshop/acceptedPosters.php,,https://www.tr32db.uni-koeln.de/search/view.php?dataID=787
+Error http://www.uea.ac.uk/~acsoe/welcome.html,Error,http://www.uea.ac.uk/~acsoe/welcome.html,,https://catalogue.ceda.ac.uk/uuid/4f7d5e42f95641c1a908eae9ce25bd3e
+Error http://www.vaisala.com/en/Pages/default.aspx,Error,http://www.vaisala.com/en/Pages/default.aspx,,https://www.vaisala.com
+Error http://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6,Error,http://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6,,https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6
+Error https://www.force11.org/datacitation,Error,https://www.force11.org/datacitation,,https://www.force11.org/
+Error https://www.openaire.eu/en/component/content/article/9-news-events/432-interoperability-workshop-uminho-78-february-2013,Error,https://www.openaire.eu/en/component/content/article/9-news-events/432-interoperability-workshop-uminho-78-february-2013,,https://www.openaire.eu/openaire-interoperability-workshop-presentations-a-recordings-online?highlight=WyJpbnRlcm9wZXJhYmlsaXR5IiwiJ2ludGVyb3BlcmFiaWxpdHknIiwid29ya3Nob3AiLCJpbnRlcm9wZXJhYmlsaXR5IHdvcmtzaG9wIl0=
+Redirected http://arsf-dan.nerc.ac.uk/ https://nerc-arf-dan.pml.ac.uk/,Redirected,http://arsf-dan.nerc.ac.uk/,https://nerc-arf-dan.pml.ac.uk/,
+Redirected http://arsf-dan.nerc.ac.uk/trac/wiki/Reports https://nerc-arf-dan.pml.ac.uk/trac/wiki/Reports,Redirected,http://arsf-dan.nerc.ac.uk/trac/wiki/Reports,https://nerc-arf-dan.pml.ac.uk/trac/wiki/Reports,
+Redirected http://arsf.nerc.ac.uk/ http://arsf.nerc.ac.uk/index.asp?cookieConsent=A,Redirected,http://arsf.nerc.ac.uk/,http://arsf.nerc.ac.uk/index.asp?cookieConsent=A,
+Redirected http://badc.nerc.ac.uk https://archive.ceda.ac.uk/,Redirected,http://badc.nerc.ac.uk,https://archive.ceda.ac.uk/,
+Redirected http://badc.nerc.ac.uk/ https://archive.ceda.ac.uk/,Redirected,http://badc.nerc.ac.uk/,https://archive.ceda.ac.uk/,
+Redirected http://badc.nerc.ac.uk/data/active/ https://catalogue.ceda.ac.uk/uuid/e3a65c1b11972f7b291f1ed4397e77c8,Redirected,http://badc.nerc.ac.uk/data/active/,https://catalogue.ceda.ac.uk/uuid/e3a65c1b11972f7b291f1ed4397e77c8,
+Redirected http://badc.nerc.ac.uk/data/bolton/ https://catalogue.ceda.ac.uk/uuid/569bc9a4b454f779e8a11e9ed3f621ef,Redirected,http://badc.nerc.ac.uk/data/bolton/,https://catalogue.ceda.ac.uk/uuid/569bc9a4b454f779e8a11e9ed3f621ef,
+Redirected http://badc.nerc.ac.uk/data/chilbolton/ https://catalogue.ceda.ac.uk/uuid/7cbc3fc19bfa037a48ba4cba4b93544d,Redirected,http://badc.nerc.ac.uk/data/chilbolton/,https://catalogue.ceda.ac.uk/uuid/7cbc3fc19bfa037a48ba4cba4b93544d,
+Redirected http://badc.nerc.ac.uk/data/claus/ https://catalogue.ceda.ac.uk/uuid/37e1193a2369aff54d22a40ac402030b,Redirected,http://badc.nerc.ac.uk/data/claus/,https://catalogue.ceda.ac.uk/uuid/37e1193a2369aff54d22a40ac402030b,
+Redirected http://badc.nerc.ac.uk/data/cryostat/ https://catalogue.ceda.ac.uk/uuid/ec33852e9c9e7a8b09ec7d638fec2668,Redirected,http://badc.nerc.ac.uk/data/cryostat/,https://catalogue.ceda.ac.uk/uuid/ec33852e9c9e7a8b09ec7d638fec2668,
+Redirected http://badc.nerc.ac.uk/data/mst/ https://catalogue.ceda.ac.uk/uuid/bd095d86e4a9f0c706b08058dbad3b31,Redirected,http://badc.nerc.ac.uk/data/mst/,https://catalogue.ceda.ac.uk/uuid/bd095d86e4a9f0c706b08058dbad3b31,
+Redirected http://badc.nerc.ac.uk/data/rapid/ https://catalogue.ceda.ac.uk/uuid/45c07d898be045cfbc5e0ec2076e3ada,Redirected,http://badc.nerc.ac.uk/data/rapid/,https://catalogue.ceda.ac.uk/uuid/45c07d898be045cfbc5e0ec2076e3ada,
+Redirected http://badc.nerc.ac.uk/view/badc.nerc.ac.uk__ATOM__dataent_MRF https://catalogue.ceda.ac.uk/uuid/605b99a139b1162de6a1096a11b0a8b4,Redirected,http://badc.nerc.ac.uk/view/badc.nerc.ac.uk__ATOM__dataent_MRF,https://catalogue.ceda.ac.uk/uuid/605b99a139b1162de6a1096a11b0a8b4,
+Redirected http://catalogue.ceda.ac.uk/search?return_obj=by_search_obj&search_term=acsoe&search_obj=coll https://catalogue.ceda.ac.uk/?record_types=ObservationCollection&record_types=Observation&q=acsoe,Redirected,http://catalogue.ceda.ac.uk/search?return_obj=by_search_obj&search_term=acsoe&search_obj=coll,https://catalogue.ceda.ac.uk/?record_types=ObservationCollection&record_types=Observation&q=acsoe,
+Redirected http://catalogue.ceda.ac.uk/uuid/251474c7b09449d8b9e7aeaf1461858f https://catalogue.ceda.ac.uk/uuid/251474c7b09449d8b9e7aeaf1461858f,Redirected,http://catalogue.ceda.ac.uk/uuid/251474c7b09449d8b9e7aeaf1461858f,https://catalogue.ceda.ac.uk/uuid/251474c7b09449d8b9e7aeaf1461858f,
+Redirected http://catalogue.ceda.ac.uk/uuid/510b22c6d12e4635b604c172b583167e https://catalogue.ceda.ac.uk/uuid/510b22c6d12e4635b604c172b583167e,Redirected,http://catalogue.ceda.ac.uk/uuid/510b22c6d12e4635b604c172b583167e,https://catalogue.ceda.ac.uk/uuid/510b22c6d12e4635b604c172b583167e,
+Redirected http://catalogue.ceda.ac.uk/uuid/f34f97696cd94946b6ace2e8738df805 https://catalogue.ceda.ac.uk/uuid/f34f97696cd94946b6ace2e8738df805,Redirected,http://catalogue.ceda.ac.uk/uuid/f34f97696cd94946b6ace2e8738df805,https://catalogue.ceda.ac.uk/uuid/f34f97696cd94946b6ace2e8738df805,
+Redirected http://cedadocs.badc.rl.ac.uk/1259/ http://cedadocs.ceda.ac.uk/1259/,Redirected,http://cedadocs.badc.rl.ac.uk/1259/,http://cedadocs.ceda.ac.uk/1259/,https://amof.ac.uk/observatory/capel-dewi-atmospheric-observatory-cdao/
+Redirected http://cloud1.arc.nasa.gov/aaoe/project/overview.html https://cloud1.arc.nasa.gov/aaoe/project/overview.html,Redirected,http://cloud1.arc.nasa.gov/aaoe/project/overview.html,https://cloud1.arc.nasa.gov/aaoe/project/overview.html,
+Redirected http://cloud1.arc.nasa.gov/aaoe/project/statement.html https://cloud1.arc.nasa.gov/aaoe/project/statement.html,Redirected,http://cloud1.arc.nasa.gov/aaoe/project/statement.html,https://cloud1.arc.nasa.gov/aaoe/project/statement.html,
+Redirected http://cloud1.arc.nasa.gov/solve/archiv/archive.tutorial.html https://cloud1.arc.nasa.gov/solve/archiv/archive.tutorial.html,Redirected,http://cloud1.arc.nasa.gov/solve/archiv/archive.tutorial.html,https://cloud1.arc.nasa.gov/solve/archiv/archive.tutorial.html,
+Redirected http://mst.nerc.ac.uk https://mst.nerc.ac.uk/,Redirected,http://mst.nerc.ac.uk,https://mst.nerc.ac.uk/,https://amof.ac.uk/observatory/capel-dewi-atmospheric-observatory-cdao/
+Redirected http://neodc.nerc.ac.uk https://archive.ceda.ac.uk/,Redirected,http://neodc.nerc.ac.uk,https://archive.ceda.ac.uk/,
+Redirected http://ukclimateprojections.metoffice.gov.uk/ https://www.metoffice.gov.uk/research/approach/collaboration/ukcp,Redirected,http://ukclimateprojections.metoffice.gov.uk/,https://www.metoffice.gov.uk/research/approach/collaboration/ukcp,
+Redirected http://www.badc.nerc.ac.uk https://archive.ceda.ac.uk/,Redirected,http://www.badc.nerc.ac.uk,https://archive.ceda.ac.uk/,
+Redirected http://www.badc.rl.ac.uk https://archive.ceda.ac.uk/,Redirected,http://www.badc.rl.ac.uk,https://archive.ceda.ac.uk/,
+Redirected http://www.ceda.ac.uk https://www.ceda.ac.uk/,Redirected,http://www.ceda.ac.uk,https://www.ceda.ac.uk/,
+Redirected http://www.ceda.ac.uk/ https://www.ceda.ac.uk/,Redirected,http://www.ceda.ac.uk/,https://www.ceda.ac.uk/,
+Redirected http://www.chilbolton.rl.ac.uk https://www.chilbolton.stfc.ac.uk/Pages/home.aspx,Redirected,http://www.chilbolton.rl.ac.uk,https://www.chilbolton.stfc.ac.uk/Pages/home.aspx,
+Redirected http://www.clim-past.net/10/1983/2014/ https://cp.copernicus.org/articles/10/1983/2014/,Redirected,http://www.clim-past.net/10/1983/2014/,https://cp.copernicus.org/articles/10/1983/2014/,
+Redirected http://www.climateprediction.net https://www.climateprediction.net/,Redirected,http://www.climateprediction.net,https://www.climateprediction.net/,
+Redirected http://www.clipc.eu http://www.clipc.eu/,Redirected,http://www.clipc.eu,http://www.clipc.eu/,
+Redirected http://www.egu.eu https://www.egu.eu/,Redirected,http://www.egu.eu,https://www.egu.eu/,
+Redirected http://www.eumetsat.int https://www.eumetsat.int:443/,Redirected,http://www.eumetsat.int,https://www.eumetsat.int:443/,https://www.eumetsat.int/
+Redirected http://www.famous.ac.uk http://www.famous.ac.uk/,Redirected,http://www.famous.ac.uk,http://www.famous.ac.uk/,
+Redirected http://www.globsnow.info/index.php?page=Snow_Water_Equivalent https://www.globsnow.info/index.php?page=Snow_Water_Equivalent,Redirected,http://www.globsnow.info/index.php?page=Snow_Water_Equivalent,https://www.globsnow.info/index.php?page=Snow_Water_Equivalent,
+Redirected http://www.jasmin.ac.uk https://jasmin.ac.uk/,Redirected,http://www.jasmin.ac.uk,https://jasmin.ac.uk/,
+Redirected http://www.jenoptik.com/en_home https://www.jenoptik.com/,Redirected,http://www.jenoptik.com/en_home,https://www.jenoptik.com/,
+Redirected http://www.metoffice.gov.uk https://www.metoffice.gov.uk/,Redirected,http://www.metoffice.gov.uk,https://www.metoffice.gov.uk/,
+Redirected http://www.metoffice.gov.uk/ https://www.metoffice.gov.uk/,Redirected,http://www.metoffice.gov.uk/,https://www.metoffice.gov.uk/,
+Redirected http://www.metoffice.gov.uk/hadobs/hadcrut4/ https://www.metoffice.gov.uk/hadobs/hadcrut4/,Redirected,http://www.metoffice.gov.uk/hadobs/hadcrut4/,https://www.metoffice.gov.uk/hadobs/hadcrut4/,
+Redirected http://www.metoffice.gov.uk/hadobs/hadisd/ https://www.metoffice.gov.uk/hadobs/hadisd/,Redirected,http://www.metoffice.gov.uk/hadobs/hadisd/,https://www.metoffice.gov.uk/hadobs/hadisd/,
+Redirected http://www.nceo.ac.uk https://www.nceo.ac.uk/,Redirected,http://www.nceo.ac.uk,https://www.nceo.ac.uk/,
+Redirected http://www.neodc.rl.ac.uk https://archive.ceda.ac.uk/,Redirected,http://www.neodc.rl.ac.uk,https://archive.ceda.ac.uk/,
+Redirected http://www.nerc.ac.uk https://www.ukri.org/councils/nerc/,Redirected,http://www.nerc.ac.uk,https://www.ukri.org/councils/nerc/,
+Redirected http://www.sron.nl/index.php?option=com_content&task=view&id=191&Itemid=122 https://www.sron.nl/index.php?option=com_content&task=view&id=191&Itemid=122,Redirected,http://www.sron.nl/index.php?option=com_content&task=view&id=191&Itemid=122,https://www.sron.nl/index.php?option=com_content&task=view&id=191&Itemid=122,
+Redirected http://www.statistics.gov.uk/downloads/theme_health/HSQ25.pdf https://webarchive.nationalarchives.gov.uk/ukgwa/20160105160709/http://www.ons.gov.uk/ons/downloads/theme_health/hsq25.pdf,Redirected,http://www.statistics.gov.uk/downloads/theme_health/HSQ25.pdf,https://webarchive.nationalarchives.gov.uk/ukgwa/20160105160709/http://www.ons.gov.uk/ons/downloads/theme_health/hsq25.pdf,
+Redirected http://www.stfc.ac.uk https://www.ukri.org/councils/stfc/,Redirected,http://www.stfc.ac.uk,https://www.ukri.org/councils/stfc/,
+Redirected http://www.thiesclima.com https://www.thiesclima.com/,Redirected,http://www.thiesclima.com,https://www.thiesclima.com/,
+Redirected http://www.ukssdc.ac.uk https://www.ukssdc.ac.uk/,Redirected,http://www.ukssdc.ac.uk,https://www.ukssdc.ac.uk/,
+Redirected http://www.ukssdc.ac.uk/ https://www.ukssdc.ac.uk/,Redirected,http://www.ukssdc.ac.uk/,https://www.ukssdc.ac.uk/,
+Redirected https://www.eustaceproject.org https://www.eustaceproject.org/,Redirected,https://www.eustaceproject.org,https://www.eustaceproject.org/,
+Redirected https://www.neodc.rl.ac.uk https://www.neodc.rl.ac.uk/,Redirected,https://www.neodc.rl.ac.uk,https://www.neodc.rl.ac.uk/,
+Redirected	http://badc.nerc.ac.uk/browse/badc/CDs/aase89	https://data.ceda.ac.uk/badc/CDs/aase89,Redirected,http://badc.nerc.ac.uk/browse/badc/CDs/aase89,https://data.ceda.ac.uk/badc/CDs/aase89,
+Redirected	http://badc.nerc.ac.uk/browse/badc/CDs/aaoe87	https://data.ceda.ac.uk/badc/CDs/aaoe87,Redirected,http://badc.nerc.ac.uk/browse/badc/CDs/aaoe87,https://data.ceda.ac.uk/badc/CDs/aaoe87,
+Redirected	http://badc.nerc.ac.uk/browse/badc/CDs/ashoe94	https://data.ceda.ac.uk/badc/CDs/ashoe94,Redirected,http://badc.nerc.ac.uk/browse/badc/CDs/ashoe94,https://data.ceda.ac.uk/badc/CDs/ashoe94,
+Redirected	http://badc.nerc.ac.uk/cgi-bin/data_browser/data_browser/badc/CDs/gloss/manual	https://data.ceda.ac.uk/badc/CDs/gloss/manual,Redirected,http://badc.nerc.ac.uk/cgi-bin/data_browser/data_browser/badc/CDs/gloss/manual,https://data.ceda.ac.uk/badc/CDs/gloss/manual,
+Redirected	http://badc.nerc.ac.uk/browse/badc/CDs/isccpc2	https://data.ceda.ac.uk/badc/CDs/isccpc2,Redirected,http://badc.nerc.ac.uk/browse/badc/CDs/isccpc2,https://data.ceda.ac.uk/badc/CDs/isccpc2,
+Redirected	http://badc.nerc.ac.uk/cgi-bin/data_browser/data_browser/badc/sage3/doc	https://data.ceda.ac.uk/badc/sage3/doc,Redirected,http://badc.nerc.ac.uk/cgi-bin/data_browser/data_browser/badc/sage3/doc,https://data.ceda.ac.uk/badc/sage3/doc,
+Redirected	http://badc.nerc.ac.uk/browse/badc/csip/docs/photos2005	https://data.ceda.ac.uk/badc/csip/docs/photos2005,Redirected,http://badc.nerc.ac.uk/browse/badc/csip/docs/photos2005,https://data.ceda.ac.uk/badc/csip/docs/photos2005,
+PythonError	http://badc.nerc.ac.uk/browse/badc/acsoe/doc/SPGBRBT.txt,Redirected,http://badc.nerc.ac.uk/browse/badc/acsoe/doc/SPGBRBT.txt,https://dap.ceda.ac.uk/badc/acsoe/doc/SPGBRBT.txt,
+PythonError	http://badc.nerc.ac.uk/browse/badc/acsoe/doc/jetstream-report.txt,Redirected,http://badc.nerc.ac.uk/browse/badc/acsoe/doc/jetstream-report.txt,https://dap.ceda.ac.uk/badc/acsoe/doc/jetstream-report.txt,
+PythonError	http://badc.nerc.ac.uk/browse/badc/acsoe/doc/www.uea.ac.uk/acsoe/chal1.jpg,Redirected,http://badc.nerc.ac.uk/browse/badc/acsoe/doc/www.uea.ac.uk/acsoe/chal1.jpg,https://dap.ceda.ac.uk/badc/acsoe/doc/www.uea.ac.uk/acsoe/chal1.jpg,
+PythonError	http://badc.nerc.ac.uk/browse/badc/CDs/berlin_strat/documents/BerlinDataSeries.pdf,Redirected,http://badc.nerc.ac.uk/browse/badc/CDs/berlin_strat/documents/BerlinDataSeries.pdf,https://dap.ceda.ac.uk/badc/CDs/berlin_strat/documents/BerlinDataSeries.pdf,
+PythonError	http://badc.nerc.ac.uk/browse/badc/gfdex/docs/forecast_data_descriptions.pdf,Redirected,http://badc.nerc.ac.uk/browse/badc/gfdex/docs/forecast_data_descriptions.pdf,https://dap.ceda.ac.uk/badc/gfdex/docs/forecast_data_descriptions.pdf,
+PythonError	http://badc.nerc.ac.uk/browse/badc/sage3/doc/sage3_data_products_users_guide.pdf,Redirected,http://badc.nerc.ac.uk/browse/badc/sage3/doc/sage3_data_products_users_guide.pdf,https://dap.ceda.ac.uk/badc/sage3/doc/sage3_data_products_users_guide.pdf,
+PythonError	http://badc.nerc.ac.uk/browse/badc/sage3/doc/sage3_Data_Validation_Plan.pdf,Redirected,http://badc.nerc.ac.uk/browse/badc/sage3/doc/sage3_Data_Validation_Plan.pdf,https://dap.ceda.ac.uk/badc/sage3/doc/sage3_Data_Validation_Plan.pdf,
+PythonError	http://badc.nerc.ac.uk/browse/badc/toms/doc/earthprobe_userguide.pdf,Redirected,http://badc.nerc.ac.uk/browse/badc/toms/doc/earthprobe_userguide.pdf,https://dap.ceda.ac.uk/badc/toms/doc/earthprobe_userguide.pdf,
+PythonError	http://badc.nerc.ac.uk/browse/badc/isb52/docs/ISB52-08.pdf,Redirected,http://badc.nerc.ac.uk/browse/badc/isb52/docs/ISB52-08.pdf,https://catalogue.ceda.ac.uk/uuid/b5f808ed6da80a2c022815dbab0d5429,
+PythonError	http://badc.nerc.ac.uk/browse/badc/isb52/docs/ISB52-09.pdf,Redirected,http://badc.nerc.ac.uk/browse/badc/isb52/docs/ISB52-09.pdf,https://catalogue.ceda.ac.uk/uuid/b5f808ed6da80a2c022815dbab0d5429,
+PythonError	http://badc.nerc.ac.uk/browse/badc/isb52/docs/ISB52-10.pdf,Redirected,http://badc.nerc.ac.uk/browse/badc/isb52/docs/ISB52-10.pdf,https://catalogue.ceda.ac.uk/uuid/b5f808ed6da80a2c022815dbab0d5429,
+PythonError	http://badc.nerc.ac.uk/browse/badc/isb52/docs/ISB52-10.pdf,Redirected,http://badc.nerc.ac.uk/browse/badc/isb52/docs/ISB52-10.pdf,https://catalogue.ceda.ac.uk/uuid/b5f808ed6da80a2c022815dbab0d5429,
+PythonError	http://badc.nerc.ac.uk/browse/badc/isb52/docs/ISB52-11.pdf,Redirected,http://badc.nerc.ac.uk/browse/badc/isb52/docs/ISB52-11.pdf,https://catalogue.ceda.ac.uk/uuid/b5f808ed6da80a2c022815dbab0d5429,
+PythonError	http://badc.nerc.ac.uk/cgi-bin/data_browser/data_browser/badc/ukmo-nimrod/doc/nimrod_radar_processing.pdf,Redirected,http://badc.nerc.ac.uk/cgi-bin/data_browser/data_browser/badc/ukmo-nimrod/doc/nimrod_radar_processing.pdf,https://dap.ceda.ac.uk/badc/ukmo-nimrod/doc/nimrod_radar_processing.pdf,
+Error   http://badc.nerc.ac.uk/browse/badc/ufam/isb52/docs/ISB52-01.pdf,Error,http://badc.nerc.ac.uk/browse/badc/ufam/isb52/docs/ISB52-01.pdf,https://catalogue.ceda.ac.uk/uuid/b5f808ed6da80a2c022815dbab0d5429,
+Error   http://badc.nerc.ac.uk/browse/badc/ufam/isb52/docs/ISB52-01.pdf,Error,http://badc.nerc.ac.uk/browse/badc/ufam/isb52/docs/ISB52-01.pdf,https://catalogue.ceda.ac.uk/uuid/b5f808ed6da80a2c022815dbab0d5429,
+Error   http://badc.nerc.ac.uk/browse/badc/ufam/isb52/docs/ISB52-03.pdf,Error,http://badc.nerc.ac.uk/browse/badc/ufam/isb52/docs/ISB52-03.pdf,https://catalogue.ceda.ac.uk/uuid/b5f808ed6da80a2c022815dbab0d5429,
+Error   http://badc.nerc.ac.uk/browse/badc/ufam/isb52/docs/ISB52-04.pdf,Error,http://badc.nerc.ac.uk/browse/badc/ufam/isb52/docs/ISB52-04.pdf,https://catalogue.ceda.ac.uk/uuid/b5f808ed6da80a2c022815dbab0d5429,
+Error   http://badc.nerc.ac.uk/browse/badc/ufam/isb52/docs/ISB52-05.pdf,Error,http://badc.nerc.ac.uk/browse/badc/ufam/isb52/docs/ISB52-05.pdf,https://catalogue.ceda.ac.uk/uuid/b5f808ed6da80a2c022815dbab0d5429,
+Error   http://badc.nerc.ac.uk/browse/badc/ufam/isb52/docs/ISB52-06.pdf,Error,http://badc.nerc.ac.uk/browse/badc/ufam/isb52/docs/ISB52-06.pdf,https://catalogue.ceda.ac.uk/uuid/b5f808ed6da80a2c022815dbab0d5429,
+Error   http://badc.nerc.ac.uk/browse/badc/ufam/isb52/docs/ISB52-07.pdf,Error,http://badc.nerc.ac.uk/browse/badc/ufam/isb52/docs/ISB52-07.pdf,https://catalogue.ceda.ac.uk/uuid/b5f808ed6da80a2c022815dbab0d5429,
+Error   http://badc.nerc.ac.uk/cgi-bin/data_browser/data_browser/badc/ukmo-nimrod/doc/nimrod_radar_processing.pdf,Error,http://badc.nerc.ac.uk/cgi-bin/data_browser/data_browser/badc/ukmo-nimrod/doc/nimrod_radar_processing.pdf,https://dap.ceda.ac.uk/badc/ukmo-nimrod/doc/nimrod_radar_processing.pdf,
