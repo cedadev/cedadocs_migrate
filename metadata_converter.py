@@ -167,7 +167,6 @@ class Metadata_converter:
         result = dict()
 
         result.update(self.map_function("title", "title"))
-        result.update(self.map_function("title", "lalala")) # test
         result.update(self.map_function("abstract", "description", result["title"]))
         result.update(self.map_function("isbn", "imprint_isbn"))
         result.update(self.map_function("event_dates", "conference_dates"))

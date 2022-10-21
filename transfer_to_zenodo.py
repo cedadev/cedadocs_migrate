@@ -4,7 +4,6 @@ from time import sleep
 import requests
 import json
 from metadata_converter import Metadata_converter
-import sys
 from datetime import datetime 
 
 
@@ -88,7 +87,7 @@ class Transfer_to_zenodo:
         for doc in self.cedadocs_record["documents"]:
             for file in doc["files"]:
                 if counter == 40:
-                    sleep(15)
+                    sleep(3)
                     counter = 0
                 filename = file["filename"]
                 filepath = file["uri"]
@@ -127,7 +126,7 @@ class Transfer_to_zenodo:
             params=self.params,
         )
         print(f"Record posted with status code {r.status_code}")
-        sleep(5)
+        sleep(3)
 
         r = requests.get(
             f"https://sandbox.zenodo.org/api/deposit/depositions/{self.deposition_id}",
@@ -144,7 +143,7 @@ class Transfer_to_zenodo:
             "https://sandbox.zenodo.org/api/deposit/depositions", params=self.params
         )
 
-        while r.json()[:-3]:
+        while r.json()[:-4]:
             for d in r.json():
                 print(d["id"])
                 r1 = requests.delete(

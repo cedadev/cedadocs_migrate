@@ -14,11 +14,11 @@ if __name__ == "__main__":
             id_list = [int(i) for i in id_list]
 
         for i in id_list:
-            if int(sys.argv[1]) < i < int(sys.argv[2]):
+            if int(sys.argv[1]) <= i < int(sys.argv[2]):
                 transfer_object = Transfer_to_zenodo(i)
                 transfer_object.get_record()
                 transfer_object.upload_to_zenodo()
-                sleep(10)
+                sleep(3)
 
     elif int(sys.argv[1]) == -2137:
         transfer_object = Transfer_to_zenodo(int(sys.argv[1]))
@@ -28,4 +28,4 @@ if __name__ == "__main__":
         transfer_object = Transfer_to_zenodo(int(sys.argv[1]))
         transfer_object.get_record()
         transfer_object.upload_to_zenodo()
-        # transfer_object.post_record()
+        #transfer_object.post_record()
