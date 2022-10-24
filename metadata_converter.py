@@ -71,7 +71,7 @@ class Metadata_converter:
                 "video": "video",
                 "audio": "video",
                 "dataset": "dataset",
-                "monograph/work_paper": "publication/workpaper",
+                "monograph/working_paper": "publication/workingpaper",
                 "monograph/other": "other",
                 "monograph/structured_metadata": "other",
                 "monograph/discussion_paper": "publication/workingpaper",
@@ -208,11 +208,11 @@ class Metadata_converter:
                     "ESA",
                 ],  # 'Data quality European Space Agency ESA'
                 341: [
-                    "doppler",
+                    "Doppler",
                     "LiDAR",
                     "Atmospheric Physics Turbulence",
                 ],  # 'Doppler lidar Atmospheric Physics Turbulence'
-                764: ["FFAM", "Website Airborne Measurements"],
+                764: ["FAAM Website",  "Airborne Measurements"],
                 785: [
                     "LiDAR",
                     "Volcanic Ash",
@@ -261,6 +261,7 @@ class Metadata_converter:
 
     def additional_notes(self):
         notes = ""
+        notes += self.add_note("Previously curated at:", "uri")
         notes += self.add_note("Contact for resource:", "contact_email")
         notes += self.add_note("Event type:", "event_type")
         notes += self.add_note("Related identifier for this resource:", "id_number")
@@ -269,7 +270,7 @@ class Metadata_converter:
             "The publish date on this item was its original", "date_type"
         )
         notes += self.add_note(
-            "This item was previously associated with content at:", "official_url"
+            "This item was previously associated with content (as an official url) at:", "official_url"
         )
         notes += self.add_note("Originally provided via", "output_media")
 

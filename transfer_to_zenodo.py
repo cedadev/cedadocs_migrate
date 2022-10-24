@@ -102,18 +102,23 @@ class Transfer_to_zenodo:
                     print(
                         f"Unexpected status code {file_response.status_code} on file {filename}"
                     )
-                    requests.delete(
-                        f"https://sandbox.zenodo.org/api/deposit/depositions/{dep_id}",
-                        params=self.params,
-                    )
-                    print("Deposition will be removed from Zenodo")
-
                     log_variables[4] = str(file_response.status_code)
                     log_variables[5] = filename
                     self.save_logs(log_variables)
+
+                    
+                    
                     return -1
 
                 print(f"File {filename} uploaded")
+
+        # if log_variables[4]:
+        #     requests.delete(
+        #                 f"https://sandbox.zenodo.org/api/deposit/depositions/{dep_id}",
+        #                 params=self.params,
+        #             )
+        #     print("Deposition will be removed from Zenodo")     
+                
 
         print("\nEnd of record. Success!\n")
         self.deposition_id = dep_id
