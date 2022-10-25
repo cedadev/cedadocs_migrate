@@ -99,18 +99,6 @@ class Metadata_converter:
 
         return result
 
-    def convert_creators(self):
-        if "creators" not in self.cedadocs_record:
-            return {}
-        creatorsListJSON = self.cedadocs_record["creators"]
-        result = []
-        for c in creatorsListJSON:
-            creator = dict()
-            creator["name"] = f"{c['name']['family']}, {c['name']['given']}"
-            result.append(creator)
-        return {"creators": result}
-
-
     def add_contributor_name(self, first_name, surname=""):
         name = []
         
@@ -123,6 +111,19 @@ class Metadata_converter:
             return 'Unknown'
 
         return ", ".join(name)
+
+    def convert_creators(self):
+        if "creators" not in self.cedadocs_record:
+            return {}
+        creatorsListJSON = self.cedadocs_record["creators"]
+        result = []
+        for c in creatorsListJSON:
+            creator = dict()
+            creator["name"] = self.add_contributor_name(c['name']['given'], c['name']['family'])
+            result.append(creator)
+        return {"creators": result}
+
+
 
     def convert_contributors(self):
         result = []
