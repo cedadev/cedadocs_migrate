@@ -149,6 +149,13 @@ class Metadata_converter:
                 contributor["name"] = c
                 contributor["type"] = "Other"
                 result.append(contributor)
+        
+        if 'copyright_holders' in self.cedadocs_record:
+            for c in self.cedadocs_record['copyright_holders']:
+                contributor = dict()
+                contributor["name"] = c
+                contributor["type"] = "RightsHolder"
+                result.append(contributor)
 
         if "institution" in self.cedadocs_record:
             contributor = dict()
@@ -194,11 +201,13 @@ class Metadata_converter:
         result.update(self.map_function("event_location", "conference_place"))
         result.update(self.map_function("event_title", "conference_title"))
         result.update(self.map_function("book_title", "partof_title"))
+        result.update(self.map_function("place_of_pub", "imprint_place"))
         result.update(self.map_function("number", "journal_issue"))
         result.update(self.map_function("volume", "journal_volume"))
         result.update(self.map_function("pagerange", "partof_pages"))
         result.update(self.map_function("publisher", "imprint_publisher"))
         result.update(self.map_function("publisher", "imprint_publisher"))
+    
 
         if "pages" in self.cedadocs_record:
             result["partof_pages"] = str(self.cedadocs_record["pages"])
@@ -216,6 +225,9 @@ class Metadata_converter:
 
         if "keywords" not in self.cedadocs_record:
             return {}
+
+        if "skill_areas" in self.cedadocs_record:
+            return {"keywords": ["data management", "scientific computing"]}
 
         if 822 < record_id < 866 or 912 < record_id < 916:
             return {"keywords": ["Environmental Physics Group", "Institute of Physics"]}
@@ -277,6 +289,8 @@ class Metadata_converter:
                 return ""
             if field == "date_type":
                 return f"{text} {self.cedadocs_record[field]} date\n\n"
+            if field == "series":
+                return f'{text} {self.cedadocs_record[field]} series.\n\n'
             return f"{text} {self.cedadocs_record[field]}\n\n"
         return ""
 
@@ -294,6 +308,16 @@ class Metadata_converter:
             "This item was previously associated with content (as an official url) at:", "official_url"
         )
         notes += self.add_note("Originally provided via", "output_media")
+        notes += self.add_note("This item was part of the", "series")
+
+        if 'refereed' in self.cedadocs_record:
+            notes += f'This item was {"not " if self.cedadocs_record["refered"] else ""}refereed before the publication\n\n'
+
+        if 'projects' in self.cedadocs_record:
+            notes += 'Associated projects:\n'
+            for p in self.cedadocs_record['projects']:
+                notes += f'{p}\n'
+            notes += '\n\n'
 
         notes = notes[:-2]
 
@@ -390,6 +414,50 @@ class Metadata_converter:
                 return {"journal_title": self.cedadocs_record["publication"]}
         return {}
 
+    def convert_references(self):
+        if 'referencetext' not in self.cedadocs_record:
+            return {}
+
+        references = self.cedadocs_record['referencetext']
+        references = references.split('\r\n')
+        return {'references': references}
+
+    def convert_subjects(self):
+        if 'subjects' not in self.cedadocs_record:
+            return {}
+
+        base_url = 'https://id.loc.gov/authorities/subjects/'
+        subjects_map = {
+            'archaeology': ['Archaeology', 'sh85006507.html'],
+            'atmospheric_sciences': ['Atmospheric Sciences', 'sh2018002590.html'],
+            'chemistry': ['Chemistry', 'sh85022986.html'],
+            'earth_sciences': ['Earth Sciences', 'sh85040468.html'],
+            'economics': ['Economics', 'sh85040850.html'],
+            'education': ['Education', 'sh85040989.html'],
+            'electronics': ['Electronics', 'sh85042383.html'],
+            'glaciology': ['Glaciology', 'sh85055077.html'],
+            'health': ['Health', 'sh85059518.html'],
+            'hydrology': ['Hydrology', 'sh85063458.html'],
+            'law': ['Law', 'sh85075119.html'],
+            'management': ['Management', 'sh85080336.html'],
+            'marine_sciences': ['Marine Sciences', 'sh85081263.html'],
+            'mathematics': ['Mathematics', 'sh85082139.html'],
+            'meteorology': ['Meteorology', 'sh85084334.html'],
+            'physics': ['Physics', 'sh85101653.html'],
+            'space_science': ['Space Science', 'sh85125953.html']
+        }
+        subjects = []
+        for s in self.cedadocs_record['subjects']:
+            if s in subjects_map:
+                subject = dict()
+                subject['term'] = subjects_map[s][0]
+                subject['identifier'] = base_url + subjects_map[s][1]
+                subjects_map['scheme'] = 'url'
+                subjects.append(subject)
+
+        return {'subjects': subjects}
+
+
     def get_metadata(self):
         output = dict()
         output.update(self.convert_type())
@@ -401,6 +469,8 @@ class Metadata_converter:
         output.update(self.additional_notes())
         output.update(self.convert_identifiers())
         output.update(self.convert_publication())
+        output.update(self.convert_references())
+        output.update(self.convert_subjects())
 
         # print('metadata -------------------------------')
         # for k,v in output.items():
