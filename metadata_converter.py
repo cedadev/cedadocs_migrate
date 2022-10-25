@@ -110,6 +110,20 @@ class Metadata_converter:
             result.append(creator)
         return {"creators": result}
 
+
+    def add_contributor_name(self, first_name, surname=""):
+        name = []
+        
+        if surname and surname !='.':
+            name.append(surname)
+        if first_name and first_name != '.':
+            name.append(first_name)
+
+        if any(re.match('[Uu]nknown', x) for x in name):
+            return 'Unknown'
+
+        return ", ".join(name)
+
     def convert_contributors(self):
         result = []
 
@@ -117,16 +131,22 @@ class Metadata_converter:
 
             for c in self.cedadocs_record["contributors"]:
                 contributor = dict()
-                contributor["name"] = f"{c['name']['family']}, {c['name']['given']}"
+                contributor["name"] = self.add_contributor_name(c['name']['given'], c['name']['family'])
                 contributor["type"] = "Other"
                 result.append(contributor)
 
         if "editors" in self.cedadocs_record:
-
             for c in self.cedadocs_record["editors"]:
                 contributor = dict()
-                contributor["name"] = f"{c['name']['family']}, {c['name']['given']}"
+                contributor["name"] = self.add_contributor_name(c['name']['given'], c['name']['family'])
                 contributor["type"] = "Editor"
+                result.append(contributor)
+
+        if "corp_creators" in self.cedadocs_record:
+            for c in self.cedadocs_record["corp_creators"]:
+                contributor = dict()
+                contributor["name"] = c
+                contributor["type"] = "Other"
                 result.append(contributor)
 
         if "institution" in self.cedadocs_record:
