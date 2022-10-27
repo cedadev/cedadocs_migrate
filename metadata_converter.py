@@ -1,4 +1,5 @@
 import csv
+from os import stat
 import re
 from traceback import print_tb
 from black import out
@@ -8,27 +9,43 @@ from datetime import datetime
 
 
 class Metadata_converter:
+    '''This class is responsible for converting metadata from Cedadocs to Zenodo
+
+
+    '''
     def __init__(self, cedadocs_record):
+        ''' Init method of the class
+        
+        Args:
+            cedadocs_record (dict): JSON representation of ceda docs record
+        '''
+
         self.cedadocs_record = cedadocs_record
 
+        # load DOI identifiers of already uploaded records
         self.doi_map = dict()
-
         with open("doi_list.csv") as csvfile:
             reader = csv.reader(csvfile, delimiter=",")
             for line in reader:
                 self.doi_map[int(line[0])] = line[1]
 
+        # load file with correct urls to process mapping
         self.url_map = dict()
-
         with open("cedadocs official url updates - Sheet1.csv") as csvfile:
             reader = csv.reader(csvfile, delimiter=",")
             for line in reader:
                 self.url_map[line[2]] = [line[1], line[3], line[4]]
 
     def convert_type(self):
+        '''This method converts type of the record
 
+        It takes 'type' attribute and any relevant sub-type such as 'monograph_type' to determine Zenodo's 'upload_type' and any necessary sub-type attributes
+        
+        '''
+
+        # those records needed to be mapped by hand
         dictOfExceptions = {
-            158: "publication/report",  ####
+            158: "publication/report",
             1295: "other",
             53: "image/photo",
             55: "image/photo",
@@ -45,8 +62,11 @@ class Metadata_converter:
         if self.cedadocs_record["eprintid"] in dictOfExceptions:
             out_type = dictOfExceptions[self.cedadocs_record["eprintid"]]
 
+
         else:
             record_type = self.cedadocs_record["type"]
+
+            # for 'monograph', 'conference_item' or 'exhibition' additional attribute is needed to determine a type
             if record_type == "monograph":
                 record_type += f"/{self.cedadocs_record['monograph_type']}"
 
@@ -84,12 +104,16 @@ class Metadata_converter:
                 "monograph/project_report": "publication/report",
                 "monograph/technical_report": "publication/technicalnote",
             }
+            # type is saved in format 'type/subtype' before futher processing
             out_type = typeDict[record_type]
+
 
         out_type = out_type.split("/")
 
         result = dict()
         result["upload_type"] = out_type[0]
+
+        # depending on the type, proper sub type is set
         if out_type[0] == "publication":
             result["publication_type"] = out_type[1]
 
@@ -101,7 +125,17 @@ class Metadata_converter:
 
         return result
 
-    def add_contributor_name(self, first_name, surname=""):
+    @staticmethod
+    def add_contributor_name(first_name, surname=""):
+        '''This method format name bad/or surname of person/institution
+        
+        It is created to avoid following commas in case of institution and to standardize way of representing missing data
+
+        Args:
+            first_name (str): First name of the contributor
+            surname (str): Surname of the contributor (optional)
+        '''    
+
         name = []
 
         if surname and surname != ".":
@@ -109,43 +143,57 @@ class Metadata_converter:
         if first_name and first_name != ".":
             name.append(first_name)
 
+        # if 'unknown' appers in any part of the name, 'Unknown' is returned
         if any(re.match("[Uu]nknown", x) for x in name):
             return "Unknown"
 
-        return ", ".join(name)
+        name = ', '.join(name)
+
+        return name
 
     def convert_creators(self):
+        '''This method converts creators list
+        
+        
+        '''
         if "creators" not in self.cedadocs_record:
             return {}
+
         creatorsListJSON = self.cedadocs_record["creators"]
         result = []
         for c in creatorsListJSON:
             creator = dict()
-            creator["name"] = self.add_contributor_name(
-                c["name"]["given"], c["name"]["family"]
-            )
+            c_first_name = c["name"]["given"]
+            c_surname = c["name"]["family"]
+            creator["name"] = self.add_contributor_name(c_first_name, c_surname)
             result.append(creator)
+
         return {"creators": result}
 
     def convert_contributors(self):
+        '''This method converts creators list
+        
+        It looks into various attributes in cedadocs related to contributors to extract them to a single list and pass to Zenodo
+        '''
+
+
         result = []
 
         if "contributors" in self.cedadocs_record:
-
             for c in self.cedadocs_record["contributors"]:
                 contributor = dict()
-                contributor["name"] = self.add_contributor_name(
-                    c["name"]["given"], c["name"]["family"]
-                )
+                c_first_name = c["name"]["given"]
+                c_surname = c["name"]["family"]
+                contributor["name"] = self.add_contributor_name(c_first_name, c_surname)
                 contributor["type"] = "Other"
                 result.append(contributor)
 
         if "editors" in self.cedadocs_record:
             for c in self.cedadocs_record["editors"]:
                 contributor = dict()
-                contributor["name"] = self.add_contributor_name(
-                    c["name"]["given"], c["name"]["family"]
-                )
+                c_first_name = c["name"]["given"]
+                c_surname = c["name"]["family"]
+                contributor["name"] = self.add_contributor_name(c_first_name, c_surname)
                 contributor["type"] = "Editor"
                 result.append(contributor)
 
@@ -165,11 +213,14 @@ class Metadata_converter:
 
         if "institution" in self.cedadocs_record:
             contributor = dict()
-            contributor["name"] = self.cedadocs_record["institution"]
+            i_name = self.cedadocs_record["institution"]
+
             if "department" in self.cedadocs_record:
-                contributor[
-                    "name"
-                ] = f'{self.cedadocs_record["department"]}, {contributor["name"]}'
+                d_name = self.cedadocs_record["department"]
+                contributor["name"] = f'{d_name}, {i_name}'
+            else:
+                contributor["name"] = i_name
+
             contributor["type"] = "HostingInstitution"
             result.append(contributor)
 
@@ -178,26 +229,76 @@ class Metadata_converter:
         return {}
 
     def convert_date(self):
-        if "date" in self.cedadocs_record:
-            if isinstance(self.cedadocs_record["date"], int):
-                return {
-                    "publication_date": str(self.cedadocs_record["date"]) + "-01-01"
-                }
-            elif len(self.cedadocs_record["date"]) == 7:
-                return {"publication_date": self.cedadocs_record["date"] + "-01"}
-            else:
-                return {"publication_date": self.cedadocs_record["date"]}
+        '''This method converts date
 
-        return {"publication_date": self.cedadocs_record["datestamp"][:10]}
+        If any part of date is missing it is filled with 1st day, or 1st month
+        If even the year is missing, datestamp is returned instead
+        '''
 
-    def map_function(self, eprintName, zenodoName, alt=""):
-        if eprintName in self.cedadocs_record:
-            return {zenodoName: str(self.cedadocs_record[eprintName])}
+        if 'date' not in self.cedadocs_record:
+            datestamp = self.cedadocs_record["datestamp"]
+            return {"publication_date": datestamp[:10]}
+
+        date = self.cedadocs_record["date"]
+
+        if isinstance(date, int):
+            date = str(date) + "-01-01"
+        elif len(date) == 7:
+            date += "-01"
+        
+        return {"publication_date": date}
+
+    def convert_publisher(self):
+        '''This method converts publisher
+
+        It filters out missing publishers
+        For some records acronyms are mapped to the full name of the institution
+
+        '''
+        if "publisher" not in self.cedadocs_record:
+            return {}
+
+        publisher = self.cedadocs_record["publisher"]
+        if publisher in ["N/A", "Unknown", "unknown"]:
+            return {}
+
+        acronyms_map = {
+            "ARSF-DAN": "Airborne Remote Sensing Facility Data Analysis Node (ARSF-DAN)",
+            "STFC": "Science and Technology Facilities Council (STFC)",
+            "STFC RAL": "Science and Technology Facilities Council; Rutherford Appleton Laboratory (STFC RAL)",
+            "BAS": "British Antarctic Survey (BAS)",
+            "ESRIN": "European Space Research Institute (ESRIN)",
+            "British Atmospheric Data Centre": "British Atmospheric Data Centre (BADC)",
+            "National Aeronautics and Space Administration": "National Aeronautics and Space Administration (NASA)",
+        }
+        if publisher in acronyms_map:
+            return {'imprint_publisher': acronyms_map[publisher]}
+
+        return {'imprint_publisher': publisher}
+
+    def map_function(self, cedadocs_field, zenodo_field, alt=""):
+        '''This method maps simple metadata attributes
+
+        'Simple' means that an attribute can be mapped directly from one field to another, without any extra processing
+
+        Args:
+            cedadocs_field (str): Name of the field to get value from
+            zenodo_field (str): Name of the field to map the value to
+            alt (str): Alternative value if cedadocs field is not present in JSON file
+        '''
+        if cedadocs_field in self.cedadocs_record:
+            return {zenodo_field: str(self.cedadocs_record[cedadocs_field])}
         elif alt:
-            return {zenodoName: alt}
+            return {zenodo_field: alt}
         return {}
 
-    def convert_basic_metadata(self):
+  
+    def convert_simple_metadata(self):
+        '''This method converts simple metadata attributes
+
+        'Simple' means that an attribute can be mapped directly or with little effort
+        
+        '''
         result = dict()
 
         result.update(self.map_function("title", "title"))
@@ -213,28 +314,12 @@ class Metadata_converter:
         result.update(self.map_function("pagerange", "partof_pages"))
         result.update({"language": "eng"})
 
-        if "publisher" in self.cedadocs_record:
-            publisher = self.cedadocs_record["publisher"]
-            acronyms_map = {
-                "ARSF-DAN": "Airborne Remote Sensing Facility Data Analysis Node (ARSF-DAN)",
-                "STFC": "Science and Technology Facilities Council (STFC)",
-                "STFC RAL": "Science and Technology Facilities Council; Rutherford Appleton Laboratory (STFC RAL)",
-                "BAS": "British Antarctic Survey (BAS)",
-                "ESRIN": "European Space Research Institute (ESRIN)",
-                "British Atmospheric Data Centre": "British Atmospheric Data Centre (BADC)",
-                "National Aeronautics and Space Administration": "National Aeronautics and Space Administration (NASA)",
-            }
-            if publisher in ["N/A", "Unknown", "unknown"]:
-                print("nope")
-                pass
-            elif publisher in acronyms_map:
-                result["imprint_publisher"] = acronyms_map[publisher]
-            else:
-                result["imprint_publisher"] = publisher
+       
 
         if "pages" in self.cedadocs_record:
             result["partof_pages"] = str(self.cedadocs_record["pages"])
 
+        # if article has a number it should be displayed in the title
         if (
             self.cedadocs_record["type"] == "article"
             and "number" in self.cedadocs_record
@@ -244,10 +329,14 @@ class Metadata_converter:
         return result
 
     def convert_keywords(self):
-        record_id = self.cedadocs_record["eprintid"]
+        '''This method converts keywords
 
+
+        '''
+        record_id = self.cedadocs_record["eprintid"]
         keywords = []
 
+        # some subjects have no corresponding url, so they are put into keywords
         if "subjects" in self.cedadocs_record:
             subjects_map = {
                 "biology_and_microbiology": "biology and microbiology",
@@ -261,6 +350,7 @@ class Metadata_converter:
                 if s in subjects_map:
                     keywords.append(subjects_map[s])
 
+        # there's one record with 'skill_areas' instead of keywords
         if "skill_areas" in self.cedadocs_record:
             return {"keywords": ["data management", "scientific computing"]}
 
@@ -268,8 +358,9 @@ class Metadata_converter:
             return {"keywords": keywords}
 
         if 822 < record_id < 866 or 912 < record_id < 916:
-            return {"keywords": ["Environmental Physics Group", "Institute of Physics"]}
+            return {"keywords": keywords + ["Environmental Physics Group", "Institute of Physics"]}
 
+    
         elif record_id in [150, 274, 341, 764, 785, 810, 899, 1313, 1382]:
             keywordsDict = {
                 150: ["radiosonde", "weather", "balloon", "clouds"],
@@ -307,12 +398,14 @@ class Metadata_converter:
                 1313: ["MIPAS", "Cloud Retrieval Algorithm"],
                 1382: ["CMIP", "ESGF", "CF"],
             }
-            return {"keywords": keywordsDict[record_id]}
+            return {"keywords": keywords + keywordsDict[record_id]}
 
         ceda_keywords = self.cedadocs_record["keywords"]
+        # remove full stop if there is any
         ceda_keywords = (
             ceda_keywords[:-1] if ceda_keywords[-1] == "." else ceda_keywords
         )
+        # split by various separators
         ceda_keywords = re.split(r",|;|\r\n", ceda_keywords)
         ceda_keywords = [i.strip() for i in ceda_keywords if i]
         keywords += ceda_keywords
@@ -320,6 +413,11 @@ class Metadata_converter:
         return {"keywords": keywords}
 
     def get_depositing_user(self):
+        '''This method get deposition user associated with record of given ID
+
+        Deposition user is not a part of JSON representation of record, so it has to be scraped from the cedadocs separately
+        '''
+
         rec_id = self.cedadocs_record["eprintid"]
         base_url = "http://cedadocs.ceda.ac.uk/"
         url = f"{base_url}{rec_id}"
@@ -331,22 +429,37 @@ class Metadata_converter:
         return ""
 
     def add_note(self, text, field):
-        if field in self.cedadocs_record:
-            if field == "id_number" and self.cedadocs_record["id_number"][:4] == "ISBN":
-                return ""
-            if (
-                field == "output_media"
-                and self.cedadocs_record["output_media"] == "Internet"
-            ):
-                return ""
-            if field == "date_type":
-                return f"{text} {self.cedadocs_record[field]} date\n\n"
-            if field == "series":
-                return f"{text} {self.cedadocs_record[field]} series.\n\n"
-            return f"{text} {self.cedadocs_record[field]}\n\n"
-        return ""
+        '''This method is used as a subroutine for additional_notes method
 
+        Depending on the field proper f-string is returned
+
+        Args:
+            text (str): Text of the note 
+            field (str): Field whose value meant to be inserted into text
+        '''
+        if field not in self.cedadocs_record:
+            return ""
+       
+        if field == "id_number" and self.cedadocs_record[field][:4] == "ISBN":
+            return ""
+
+        if field == "output_media" and self.cedadocs_record[field] == "Internet":
+            return ""
+
+        if field == "date_type":
+            return f"{text} {self.cedadocs_record[field]} date.\n\n"
+
+        if field == "series":
+            return f"{text} {self.cedadocs_record[field]} series.\n\n"
+
+        return f"{text} {self.cedadocs_record[field]}.\n\n"
+        
     def additional_notes(self):
+        '''This method produces string, to be put into 'additional notes' section 
+
+
+        '''
+        # most of the fields are mapped using add_note method
         notes = ""
         notes += self.add_note("Previously curated at:", "uri")
         notes += self.add_note("Contact for resource:", "contact_email")
@@ -363,6 +476,7 @@ class Metadata_converter:
         notes += self.add_note("Originally provided via", "output_media")
         notes += self.add_note("This item was part of the", "series")
 
+        # others are more complex
         if "refereed" in self.cedadocs_record:
             notes += f'This item was {"not " if self.cedadocs_record["refereed"] else ""}refereed before the publication\n\n'
 
@@ -388,12 +502,13 @@ class Metadata_converter:
         return {"notes": notes}
 
     def convert_identifiers(self):
+        '''This method converts identifiers
+
+        
+        '''
         result = []
 
-        if (
-            "id_number" in self.cedadocs_record
-            and self.cedadocs_record["id_number"][:4] == "ISBN"
-        ):
+        if "id_number" in self.cedadocs_record and self.cedadocs_record["id_number"][:4] == "ISBN":
             identifier = dict()
             identifier["identifier"] = self.cedadocs_record["id_number"][5:]
             identifier["relation"] = "isAlternateIdentifier"
@@ -424,12 +539,22 @@ class Metadata_converter:
             return {"related_identifiers": result}
         return {}
 
+    @staticmethod
     def get_base_url(url):
+        '''This method returns basic url of given url
+
+        It is used if broken URL cannot be mapped using provided CSV file
+        '''
         indices_object = re.finditer(pattern="/", string=url)
         splitPoint = [i.start() for i in indices_object][2]
         return url[:splitPoint]
 
     def convert_url(self):
+        '''This method converts url addresses
+
+        Some urls are out of date or broken, so they need to be replaced with alternative url.
+        It is done using mapping scheme from CSV file
+        '''      
 
         url = self.cedadocs_record["official_url"]
         i = self.cedadocs_record["eprintid"]
@@ -451,34 +576,47 @@ class Metadata_converter:
             return self.get_base_url(url)
 
         else:
-            print(f'Problem with record {self.cedadocs_record["eprintid"]}')
+            print(f'Problem with record {i}')
             return ""
 
     def convert_publication(self):
-        if "publication" in self.cedadocs_record:
-            if self.cedadocs_record["type"] == "article":
-                return {"journal_title": self.cedadocs_record["publication"]}
+        '''This method converts publication
 
-            elif self.cedadocs_record["type"] == "book":
-                return {"journal_title": self.cedadocs_record["publication"] + " book"}
+        Title of the publication may depend on some of the sub-types, so this methods solves this issue
 
-            elif self.cedadocs_record["monograph_type"] == "documentation":
-                return {
-                    "journal_title": self.cedadocs_record["publication"]
-                    + " documentation"
-                }
+        '''
 
-            elif self.cedadocs_record["monograph_type"] == "technical_report":
-                return {
-                    "journal_title": self.cedadocs_record["publication"]
-                    + " technical report"
-                }
+        if "publication" not in self.cedadocs_record:
+            return {}
 
-            else:
-                return {"journal_title": self.cedadocs_record["publication"]}
-        return {}
+       
+        if self.cedadocs_record["type"] == "article":
+            return {"journal_title": self.cedadocs_record["publication"]}
 
+        elif self.cedadocs_record["type"] == "book":
+            return {"journal_title": self.cedadocs_record["publication"] + " book"}
+
+        elif self.cedadocs_record["monograph_type"] == "documentation":
+            return {
+                "journal_title": self.cedadocs_record["publication"]
+                + " documentation"
+            }
+
+        elif self.cedadocs_record["monograph_type"] == "technical_report":
+            return {
+                "journal_title": self.cedadocs_record["publication"]
+                + " technical report"
+            }
+
+        else:
+            return {"journal_title": self.cedadocs_record["publication"]}
+        
     def convert_references(self):
+        '''This method converts references list
+
+        References in cedadocs are stored as single string
+        Zenodo requires list of string, so this method split references properly
+        '''
         if "referencetext" not in self.cedadocs_record:
             return {}
 
@@ -487,6 +625,10 @@ class Metadata_converter:
         return {"references": references}
 
     def convert_subjects(self):
+        '''This method converts subjects according to mapping provided in CSV file
+
+
+        '''
         if "subjects" not in self.cedadocs_record:
             return {}
 
@@ -522,21 +664,22 @@ class Metadata_converter:
         return {"subjects": subjects}
 
     def get_metadata(self):
+        '''This method produces Zenodo metadata by combining all other methods
+
+
+        '''
         output = dict()
         output.update(self.convert_type())
         output.update(self.convert_creators())
         output.update(self.convert_contributors())
         output.update(self.convert_date())
-        output.update(self.convert_basic_metadata())
+        output.update(self.convert_simple_metadata())
         output.update(self.convert_keywords())
         output.update(self.additional_notes())
         output.update(self.convert_identifiers())
         output.update(self.convert_publication())
         output.update(self.convert_references())
         output.update(self.convert_subjects())
-
-        # print('metadata -------------------------------')
-        # for k,v in output.items():
-        #     print(f'{k}: {v}')
+        output.update(self.convert_publisher())
 
         return {"metadata": output}
