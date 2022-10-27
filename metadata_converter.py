@@ -3,6 +3,8 @@ import re
 from traceback import print_tb
 from black import out
 import requests
+from bs4 import BeautifulSoup
+from datetime import datetime
 
 
 class Metadata_converter:
@@ -101,14 +103,14 @@ class Metadata_converter:
 
     def add_contributor_name(self, first_name, surname=""):
         name = []
-        
-        if surname and surname !='.':
+
+        if surname and surname != ".":
             name.append(surname)
-        if first_name and first_name != '.':
+        if first_name and first_name != ".":
             name.append(first_name)
 
-        if any(re.match('[Uu]nknown', x) for x in name):
-            return 'Unknown'
+        if any(re.match("[Uu]nknown", x) for x in name):
+            return "Unknown"
 
         return ", ".join(name)
 
@@ -119,11 +121,11 @@ class Metadata_converter:
         result = []
         for c in creatorsListJSON:
             creator = dict()
-            creator["name"] = self.add_contributor_name(c['name']['given'], c['name']['family'])
+            creator["name"] = self.add_contributor_name(
+                c["name"]["given"], c["name"]["family"]
+            )
             result.append(creator)
         return {"creators": result}
-
-
 
     def convert_contributors(self):
         result = []
@@ -132,14 +134,18 @@ class Metadata_converter:
 
             for c in self.cedadocs_record["contributors"]:
                 contributor = dict()
-                contributor["name"] = self.add_contributor_name(c['name']['given'], c['name']['family'])
+                contributor["name"] = self.add_contributor_name(
+                    c["name"]["given"], c["name"]["family"]
+                )
                 contributor["type"] = "Other"
                 result.append(contributor)
 
         if "editors" in self.cedadocs_record:
             for c in self.cedadocs_record["editors"]:
                 contributor = dict()
-                contributor["name"] = self.add_contributor_name(c['name']['given'], c['name']['family'])
+                contributor["name"] = self.add_contributor_name(
+                    c["name"]["given"], c["name"]["family"]
+                )
                 contributor["type"] = "Editor"
                 result.append(contributor)
 
@@ -149,9 +155,9 @@ class Metadata_converter:
                 contributor["name"] = c
                 contributor["type"] = "Other"
                 result.append(contributor)
-        
-        if 'copyright_holders' in self.cedadocs_record:
-            for c in self.cedadocs_record['copyright_holders']:
+
+        if "copyright_holders" in self.cedadocs_record:
+            for c in self.cedadocs_record["copyright_holders"]:
                 contributor = dict()
                 contributor["name"] = c
                 contributor["type"] = "RightsHolder"
@@ -205,9 +211,26 @@ class Metadata_converter:
         result.update(self.map_function("number", "journal_issue"))
         result.update(self.map_function("volume", "journal_volume"))
         result.update(self.map_function("pagerange", "partof_pages"))
-        result.update(self.map_function("publisher", "imprint_publisher"))
-        result.update(self.map_function("publisher", "imprint_publisher"))
-    
+        result.update({"language": "eng"})
+
+        if "publisher" in self.cedadocs_record:
+            publisher = self.cedadocs_record["publisher"]
+            acronyms_map = {
+                "ARSF-DAN": "Airborne Remote Sensing Facility Data Analysis Node (ARSF-DAN)",
+                "STFC": "Science and Technology Facilities Council (STFC)",
+                "STFC RAL": "Science and Technology Facilities Council; Rutherford Appleton Laboratory (STFC RAL)",
+                "BAS": "British Antarctic Survey (BAS)",
+                "ESRIN": "European Space Research Institute (ESRIN)",
+                "British Atmospheric Data Centre": "British Atmospheric Data Centre (BADC)",
+                "National Aeronautics and Space Administration": "National Aeronautics and Space Administration (NASA)",
+            }
+            if publisher in ["N/A", "Unknown", "unknown"]:
+                print("nope")
+                pass
+            elif publisher in acronyms_map:
+                result["imprint_publisher"] = acronyms_map[publisher]
+            else:
+                result["imprint_publisher"] = publisher
 
         if "pages" in self.cedadocs_record:
             result["partof_pages"] = str(self.cedadocs_record["pages"])
@@ -223,11 +246,26 @@ class Metadata_converter:
     def convert_keywords(self):
         record_id = self.cedadocs_record["eprintid"]
 
-        if "keywords" not in self.cedadocs_record:
-            return {}
+        keywords = []
+
+        if "subjects" in self.cedadocs_record:
+            subjects_map = {
+                "biology_and_microbiology": "biology and microbiology",
+                "computer_science": "computer science",
+                "data_and_information": "data and information",
+                "ecology_and_environment": "ecology and environment",
+                "hist_of_science": "history of science",
+                "science_policy": "science policy",
+            }
+            for s in self.cedadocs_record["subjects"]:
+                if s in subjects_map:
+                    keywords.append(subjects_map[s])
 
         if "skill_areas" in self.cedadocs_record:
             return {"keywords": ["data management", "scientific computing"]}
+
+        if "keywords" not in self.cedadocs_record:
+            return {"keywords": keywords}
 
         if 822 < record_id < 866 or 912 < record_id < 916:
             return {"keywords": ["Environmental Physics Group", "Institute of Physics"]}
@@ -245,7 +283,7 @@ class Metadata_converter:
                     "LiDAR",
                     "Atmospheric Physics Turbulence",
                 ],  # 'Doppler lidar Atmospheric Physics Turbulence'
-                764: ["FAAM Website",  "Airborne Measurements"],
+                764: ["FAAM Website", "Airborne Measurements"],
                 785: [
                     "LiDAR",
                     "Volcanic Ash",
@@ -271,12 +309,26 @@ class Metadata_converter:
             }
             return {"keywords": keywordsDict[record_id]}
 
-        keywords = self.cedadocs_record["keywords"]
-        keywords = keywords[:-1] if keywords[-1] == "." else keywords
-        keywords = re.split(r",|;|\r\n", keywords)
-        keywords = [i.strip() for i in keywords if i]
+        ceda_keywords = self.cedadocs_record["keywords"]
+        ceda_keywords = (
+            ceda_keywords[:-1] if ceda_keywords[-1] == "." else ceda_keywords
+        )
+        ceda_keywords = re.split(r",|;|\r\n", ceda_keywords)
+        ceda_keywords = [i.strip() for i in ceda_keywords if i]
+        keywords += ceda_keywords
 
         return {"keywords": keywords}
+
+    def get_depositing_user(self):
+        rec_id = self.cedadocs_record["eprintid"]
+        base_url = "http://cedadocs.ceda.ac.uk/"
+        url = f"{base_url}{rec_id}"
+        r = requests.get(url)
+        soup = BeautifulSoup(r.text, "html.parser")
+        dep_usr = soup.find_all("span", {"class": "ep_name_citation"})
+        if dep_usr:
+            return dep_usr[0].span.text
+        return ""
 
     def add_note(self, text, field):
         if field in self.cedadocs_record:
@@ -290,7 +342,7 @@ class Metadata_converter:
             if field == "date_type":
                 return f"{text} {self.cedadocs_record[field]} date\n\n"
             if field == "series":
-                return f'{text} {self.cedadocs_record[field]} series.\n\n'
+                return f"{text} {self.cedadocs_record[field]} series.\n\n"
             return f"{text} {self.cedadocs_record[field]}\n\n"
         return ""
 
@@ -305,19 +357,31 @@ class Metadata_converter:
             "The publish date on this item was its original", "date_type"
         )
         notes += self.add_note(
-            "This item was previously associated with content (as an official url) at:", "official_url"
+            "This item was previously associated with content (as an official url) at:",
+            "official_url",
         )
         notes += self.add_note("Originally provided via", "output_media")
         notes += self.add_note("This item was part of the", "series")
 
-        if 'refereed' in self.cedadocs_record:
-            notes += f'This item was {"not " if self.cedadocs_record["refered"] else ""}refereed before the publication\n\n'
+        if "refereed" in self.cedadocs_record:
+            notes += f'This item was {"not " if self.cedadocs_record["refereed"] else ""}refereed before the publication\n\n'
 
-        if 'projects' in self.cedadocs_record:
-            notes += 'Associated projects:\n'
-            for p in self.cedadocs_record['projects']:
-                notes += f'{p}\n'
-            notes += '\n\n'
+        if "projects" in self.cedadocs_record:
+            notes += "Associated projects:\n"
+            for p in self.cedadocs_record["projects"]:
+                notes += f"{p}\n"
+            notes += "\n"
+
+        notes += "Main files in this record:\n"
+        for doc in self.cedadocs_record["documents"]:
+            notes += doc["main"] + "\n"
+        notes += "\n"
+
+        dep_usr = self.get_depositing_user()
+        if dep_usr:
+            now = datetime.now()
+            now = now.strftime("%d/%m/%Y")
+            notes += f"Item originally deposited with Centre for Environmental Data Analysis (CEDA) document repository by {dep_usr}. Transferred to CEDA document repository community on Zenodo on {now}"
 
         notes = notes[:-2]
 
@@ -415,48 +479,47 @@ class Metadata_converter:
         return {}
 
     def convert_references(self):
-        if 'referencetext' not in self.cedadocs_record:
+        if "referencetext" not in self.cedadocs_record:
             return {}
 
-        references = self.cedadocs_record['referencetext']
-        references = references.split('\r\n')
-        return {'references': references}
+        references = self.cedadocs_record["referencetext"]
+        references = references.split("\r\n")
+        return {"references": references}
 
     def convert_subjects(self):
-        if 'subjects' not in self.cedadocs_record:
+        if "subjects" not in self.cedadocs_record:
             return {}
 
-        base_url = 'https://id.loc.gov/authorities/subjects/'
+        base_url = "https://id.loc.gov/authorities/subjects/"
         subjects_map = {
-            'archaeology': ['Archaeology', 'sh85006507.html'],
-            'atmospheric_sciences': ['Atmospheric Sciences', 'sh2018002590.html'],
-            'chemistry': ['Chemistry', 'sh85022986.html'],
-            'earth_sciences': ['Earth Sciences', 'sh85040468.html'],
-            'economics': ['Economics', 'sh85040850.html'],
-            'education': ['Education', 'sh85040989.html'],
-            'electronics': ['Electronics', 'sh85042383.html'],
-            'glaciology': ['Glaciology', 'sh85055077.html'],
-            'health': ['Health', 'sh85059518.html'],
-            'hydrology': ['Hydrology', 'sh85063458.html'],
-            'law': ['Law', 'sh85075119.html'],
-            'management': ['Management', 'sh85080336.html'],
-            'marine_sciences': ['Marine Sciences', 'sh85081263.html'],
-            'mathematics': ['Mathematics', 'sh85082139.html'],
-            'meteorology': ['Meteorology', 'sh85084334.html'],
-            'physics': ['Physics', 'sh85101653.html'],
-            'space_science': ['Space Science', 'sh85125953.html']
+            "archaeology": ["Archaeology", "sh85006507.html"],
+            "atmospheric_sciences": ["Atmospheric Sciences", "sh2018002590.html"],
+            "chemistry": ["Chemistry", "sh85022986.html"],
+            "earth_sciences": ["Earth Sciences", "sh85040468.html"],
+            "economics": ["Economics", "sh85040850.html"],
+            "education": ["Education", "sh85040989.html"],
+            "electronics": ["Electronics", "sh85042383.html"],
+            "glaciology": ["Glaciology", "sh85055077.html"],
+            "health": ["Health", "sh85059518.html"],
+            "hydrology": ["Hydrology", "sh85063458.html"],
+            "law": ["Law", "sh85075119.html"],
+            "management": ["Management", "sh85080336.html"],
+            "marine_sciences": ["Marine Sciences", "sh85081263.html"],
+            "mathematics": ["Mathematics", "sh85082139.html"],
+            "meteorology": ["Meteorology", "sh85084334.html"],
+            "physics": ["Physics", "sh85101653.html"],
+            "space_science": ["Space Science", "sh85125953.html"],
         }
         subjects = []
-        for s in self.cedadocs_record['subjects']:
+        for s in self.cedadocs_record["subjects"]:
             if s in subjects_map:
                 subject = dict()
-                subject['term'] = subjects_map[s][0]
-                subject['identifier'] = base_url + subjects_map[s][1]
-                subjects_map['scheme'] = 'url'
+                subject["term"] = subjects_map[s][0]
+                subject["identifier"] = base_url + subjects_map[s][1]
+                subjects_map["scheme"] = "url"
                 subjects.append(subject)
 
-        return {'subjects': subjects}
-
+        return {"subjects": subjects}
 
     def get_metadata(self):
         output = dict()

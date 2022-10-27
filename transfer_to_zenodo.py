@@ -4,7 +4,7 @@ from time import sleep
 import requests
 import json
 from metadata_converter import Metadata_converter
-from datetime import datetime 
+from datetime import datetime
 
 
 class Transfer_to_zenodo:
@@ -31,9 +31,16 @@ class Transfer_to_zenodo:
         self.cedadocs_record = r.json()
 
     def upload_to_zenodo(self):
-        
+
         now = datetime.now()
-        log_variables = [str(self.record_id), now.strftime('"%d/%m/%Y %H:%M:%S"'), '','','','']
+        log_variables = [
+            str(self.record_id),
+            now.strftime('"%d/%m/%Y %H:%M:%S"'),
+            "",
+            "",
+            "",
+            "",
+        ]
 
         metadata_converter = Metadata_converter(self.cedadocs_record)
         metadata = metadata_converter.get_metadata()
@@ -106,8 +113,6 @@ class Transfer_to_zenodo:
                     log_variables[5] = filename
                     self.save_logs(log_variables)
 
-                    
-                    
                     return -1
 
                 print(f"File {filename} uploaded")
@@ -117,8 +122,7 @@ class Transfer_to_zenodo:
         #                 f"https://sandbox.zenodo.org/api/deposit/depositions/{dep_id}",
         #                 params=self.params,
         #             )
-        #     print("Deposition will be removed from Zenodo")     
-                
+        #     print("Deposition will be removed from Zenodo")
 
         print("\nEnd of record. Success!\n")
         self.deposition_id = dep_id
@@ -161,5 +165,5 @@ class Transfer_to_zenodo:
             )
 
     def save_logs(self, log_variables):
-        with open('errors.csv', 'a') as f:
-            f.write(','.join(log_variables) + '\n')
+        with open("errors.csv", "a") as f:
+            f.write(",".join(log_variables) + "\n")

@@ -28,4 +28,4 @@ if __name__ == "__main__":
         transfer_object = Transfer_to_zenodo(int(sys.argv[1]))
         transfer_object.get_record()
         transfer_object.upload_to_zenodo()
-        #transfer_object.post_record()
+        # transfer_object.post_record()
