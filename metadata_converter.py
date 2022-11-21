@@ -315,6 +315,7 @@ class Metadata_converter:
         result.update({"language": "eng"})
 
        
+        result['title'] = result['title'].replace('\r\n', ' ')
 
         if "pages" in self.cedadocs_record:
             result["partof_pages"] = str(self.cedadocs_record["pages"])
