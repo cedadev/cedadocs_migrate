@@ -489,11 +489,11 @@ class Metadata_converter:
                     if not funder_list:
                         notes += f'{funder}.'
                     elif len(funder_list) == 1:
-                        notes += f'{funder} and '
+                        notes += f'{funder} and, '
                     else:
                         notes += f'{funder}; '
 
-            notes = notes[:-2] + '\n\n'
+            notes = notes + '\n\n'
 
         if "refereed" in self.cedadocs_record:
             notes += f'This item was {"not " if self.cedadocs_record["refereed"] else ""}refereed before the publication\n\n'
