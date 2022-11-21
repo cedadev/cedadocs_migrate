@@ -480,18 +480,16 @@ class Metadata_converter:
         # others are more complex
         if 'funders' in self.cedadocs_record:
             notes += 'This work was funded by: '
-            if len(self.cedadocs_record['funders']) == 1:
-                notes += f"{self.cedadocs_record['funders'][0]}."
-            else:
-                funder_list = self.cedadocs_record['funders'][-1::-1]
-                while funder_list:
-                    funder = funder_list.pop()
-                    if not funder_list:
-                        notes += f'{funder}.'
-                    elif len(funder_list) == 1:
-                        notes += f'{funder} and, '
-                    else:
-                        notes += f'{funder}; '
+            
+            funder_list = self.cedadocs_record['funders'][-1::-1]
+            while funder_list:
+                funder = funder_list.pop()
+                if not funder_list:
+                    notes += f'{funder}.'
+                elif len(funder_list) == 1:
+                    notes += f'{funder} and, '
+                else:
+                    notes += f'{funder}; '
 
             notes = notes + '\n\n'
 
