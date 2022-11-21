@@ -478,6 +478,23 @@ class Metadata_converter:
         notes += self.add_note("This item was part of the", "series")
 
         # others are more complex
+        if 'funders' in self.cedadocs_record:
+            notes += 'This work was funded by: '
+            if len(self.cedadocs_record['funders']) == 1:
+                notes += f"{self.cedadocs_record['funders'][0]}."
+            else:
+                funder_list = self.cedadocs_record['funders'][-1::-1]
+                while funder_list:
+                    funder = funder_list.pop()
+                    if not funder_list:
+                        notes += f'{funder}.'
+                    elif len(funder_list) == 1:
+                        notes += f'{funder} and '
+                    else:
+                        notes += f'{funder}; '
+
+            notes = notes[:-2] + '\n\n'
+
         if "refereed" in self.cedadocs_record:
             notes += f'This item was {"not " if self.cedadocs_record["refereed"] else ""}refereed before the publication\n\n'
 
@@ -487,10 +504,13 @@ class Metadata_converter:
                 notes += f"{p}\n"
             notes += "\n"
 
+        
+
         notes += "Main files in this record:\n"
         for doc in self.cedadocs_record["documents"]:
             notes += doc["main"] + "\n"
         notes += "\n"
+
 
         dep_usr = self.get_depositing_user()
         if dep_usr:
