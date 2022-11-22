@@ -5,7 +5,7 @@ import json
 from metadata_converter import Metadata_converter
 from datetime import datetime
 
-BASE_URL = "https://sandbox.zenodo.org/"
+BASE_URL = "https://sandbox.zenodo.org/" #https://zenodo.org/
 ACCESS_TOKEN =  "z9FKfVJg1gHzqeV7r74XCMqY2Af6kdHScMFyftdcCN39alQEjb8R9HH5ol9g"
 
 
