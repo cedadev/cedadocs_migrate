@@ -5,10 +5,14 @@ import json
 from metadata_converter import Metadata_converter
 from datetime import datetime
 
+BASE_URL = "https://sandbox.zenodo.org/"
+ACCESS_TOKEN =  "z9FKfVJg1gHzqeV7r74XCMqY2Af6kdHScMFyftdcCN39alQEjb8R9HH5ol9g"
+
 
 class Transfer_to_zenodo:
     '''This class is responsible for transferring records from Cedadocs to Zenodo
     '''
+    
     def __init__(self, record_id):
         ''' Init method of the class
         
@@ -27,9 +31,7 @@ class Transfer_to_zenodo:
             exit(1)
 
         self.record_id = record_id
-        self.ACCESS_TOKEN = (
-            "z9FKfVJg1gHzqeV7r74XCMqY2Af6kdHScMFyftdcCN39alQEjb8R9HH5ol9g"
-        )
+        self.ACCESS_TOKEN = ACCESS_TOKEN
         self.params = {"access_token": self.ACCESS_TOKEN}
 
     def get_record(self):
@@ -73,7 +75,7 @@ class Transfer_to_zenodo:
 
         # create deposition folder
         creation_response = requests.post(
-            "https://sandbox.zenodo.org/api/deposit/depositions",
+            f"{BASE_URL}api/deposit/depositions",
             params=self.params,
             json={},
         )
@@ -95,7 +97,7 @@ class Transfer_to_zenodo:
 
         # upload metadata
         metadata_response = requests.put(
-            f"https://sandbox.zenodo.org/api/deposit/depositions/{dep_id}",
+            f"{BASE_URL}api/deposit/depositions/{dep_id}",
             params=self.params,
             data=json.dumps(metadata),
             headers={"Content-Type": "application/json"},
@@ -111,7 +113,7 @@ class Transfer_to_zenodo:
         # if fail - save logs and exit
         if metadata_response.status_code >= 300:
             requests.delete(
-                f"https://sandbox.zenodo.org/api/deposit/depositions/{dep_id}",
+                f"{BASE_URL}api/deposit/depositions/{dep_id}",
                 params=self.params,
             )
             print("Deposition will be removed from Zenodo")
@@ -143,7 +145,7 @@ class Transfer_to_zenodo:
                     log_variables[5] = filename
                     self.save_logs(log_variables)
                     requests.delete(
-                        f"https://sandbox.zenodo.org/api/deposit/depositions/{dep_id}",
+                        f"{BASE_URL}api/deposit/depositions/{dep_id}",
                         params=self.params,
                     )
                     print("Deposition will be removed from Zenodo")
@@ -163,14 +165,14 @@ class Transfer_to_zenodo:
         
         '''
         r = requests.post(
-            f"https://sandbox.zenodo.org/api/deposit/depositions/{self.deposition_id}/actions/publish",
+            f"{BASE_URL}api/deposit/depositions/{self.deposition_id}/actions/publish",
             params=self.params,
         )
         print(f"Record posted with status code {r.status_code}")
         sleep(3)
 
         r = requests.get(
-            f"https://sandbox.zenodo.org/api/deposit/depositions/{self.deposition_id}",
+            f"{BASE_URL}api/deposit/depositions/{self.deposition_id}",
             params=self.params,
         )
 
@@ -185,19 +187,19 @@ class Transfer_to_zenodo:
         
         '''
         r = requests.get(
-            "https://sandbox.zenodo.org/api/deposit/depositions", params=self.params
+            f"{BASE_URL}api/deposit/depositions", params=self.params
         )
 
         while r.json()[:-4]:
             for d in r.json():
                 print(d["id"])
                 r1 = requests.delete(
-                    f'https://sandbox.zenodo.org/api/deposit/depositions/{d["id"]}',
+                    f'{BASE_URL}api/deposit/depositions/{d["id"]}',
                     params=self.params,
                 )
                 print(r1)
             r = requests.get(
-                "https://sandbox.zenodo.org/api/deposit/depositions", params=self.params
+                f"{BASE_URL}api/deposit/depositions", params=self.params
             )
 
     @staticmethod
