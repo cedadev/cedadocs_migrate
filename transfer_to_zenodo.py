@@ -5,9 +5,10 @@ import json
 from metadata_converter import Metadata_converter
 from datetime import datetime
 
-BASE_URL = "https://sandbox.zenodo.org/" #https://zenodo.org/
-ACCESS_TOKEN =  "z9FKfVJg1gHzqeV7r74XCMqY2Af6kdHScMFyftdcCN39alQEjb8R9HH5ol9g"
-
+BASE_URL = "https://sandbox.zenodo.org/" 
+BASE_URL = 'https://zenodo.org/'
+ACCESS_TOKEN =  "z9FKfVJg1gHzqeV7r74XCMqY2Af6kdHScMFyftdcCN39alQEjb8R9HH5ol9g" #my sandbox key
+ACCESS_TOKEN = 'gyDP5xUfx8E9omQ3GPr9X57aKRQ5chjth8OzMDU0p8JO7o3EuJucAtxVeRyg' #ceda zenodo key
 
 class Transfer_to_zenodo:
     '''This class is responsible for transferring records from Cedadocs to Zenodo
@@ -112,6 +113,7 @@ class Transfer_to_zenodo:
 
         # if fail - save logs and exit
         if metadata_response.status_code >= 300:
+            print(f'\n{metadata_response.text}\n')
             requests.delete(
                 f"{BASE_URL}api/deposit/depositions/{dep_id}",
                 params=self.params,
@@ -124,8 +126,9 @@ class Transfer_to_zenodo:
         counter = 0
         for doc in self.cedadocs_record["documents"]:
             for file in doc["files"]:
+                 
                 # sleep to avoid 429 status code
-                if counter == 40:
+                if counter == 30:
                     sleep(3)
                     counter = 0
                 filename = file["filename"]

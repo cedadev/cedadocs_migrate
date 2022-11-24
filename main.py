@@ -20,6 +20,9 @@ if __name__ == "__main__":
                 transfer_object.get_record()
                 transfer_object.upload_to_zenodo()
                 sleep(3)
+                # commented out for testing
+                transfer_object.post_record()
+
 
     # -2137 is a special code for cleaning upload service
     elif int(sys.argv[1]) == -2137:
@@ -33,4 +36,4 @@ if __name__ == "__main__":
         transfer_object.upload_to_zenodo()
 
         # commented out for testing
-        # transfer_object.post_record()
+        transfer_object.post_record()

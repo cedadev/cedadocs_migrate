@@ -313,6 +313,7 @@ class Metadata_converter:
         result.update(self.map_function("volume", "journal_volume"))
         result.update(self.map_function("pagerange", "partof_pages"))
         result.update({"language": "eng"})
+        result.update({'communities': [{'identifier': 'ceda-document-repository'}]})
 
        
         result['title'] = result['title'].replace('\r\n', ' ')
@@ -462,7 +463,7 @@ class Metadata_converter:
         '''
         # most of the fields are mapped using add_note method
         notes = ""
-        notes += self.add_note("Previously curated at:", "uri")
+        notes += f"Previously curated at: http://cedadocs.ceda.ac.uk/{self.cedadocs_record['eprintid']}/\n\n"
         notes += self.add_note("Contact for resource:", "contact_email")
         notes += self.add_note("Event type:", "event_type")
         notes += self.add_note("Related identifier for this resource:", "id_number")
@@ -487,7 +488,7 @@ class Metadata_converter:
                 if not funder_list:
                     notes += f'{funder}.'
                 elif len(funder_list) == 1:
-                    notes += f'{funder} and, '
+                    notes += f'{funder}; and, '
                 else:
                     notes += f'{funder}; '
 
