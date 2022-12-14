@@ -1,17 +1,4 @@
 record_id,datetime,creation_status_code,metadata_status_code,file_upload_status_code,file_which_caused_problem
-65,"22/11/2022 08:41:52",201,200,,
-65,"23/11/2022 12:15:02",201,400,,
-65,"23/11/2022 12:16:20",201,400,,
-65,"23/11/2022 13:32:47",201,400,,
-764,"23/11/2022 14:41:33",201,200,400,Website/public/campaigns/capex/b468routeplan.pdf.filepart
-764,"23/11/2022 14:41:33",201,200,400,Website/public/campaigns/capex/b468routeplan.pdf.filepart
-8,"23/11/2022 16:43:12",201,400,,
-8,"23/11/2022 16:45:53",201,200,,
-100,"23/11/2022 16:51:07",201,200,,
-8,"23/11/2022 16:51:12",201,200,,
-14,"23/11/2022 16:51:16",201,200,,
-10,"23/11/2022 16:51:23",201,200,,
-11,"23/11/2022 16:51:28",201,200,,
 8,"23/11/2022 16:53:32",201,200,,
 9,"23/11/2022 16:55:44",201,200,,
 10,"23/11/2022 16:55:59",201,200,,
@@ -1260,5 +1247,3 @@ record_id,datetime,creation_status_code,metadata_status_code,file_upload_status_
 1490,"24/11/2022 12:49:53",201,200,,
 1491,"24/11/2022 12:50:04",201,200,,
 1492,"24/11/2022 12:50:14",201,200,,
-764,"24/11/2022 14:34:01",201,200,400,Website/public/campaigns/capex/b468routeplan.pdf.filepart
-764,"24/11/2022 14:34:01",201,200,400,Website/public/campaigns/capex/b468routeplan.pdf.filepart

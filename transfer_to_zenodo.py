@@ -7,8 +7,8 @@ from datetime import datetime
 
 BASE_URL = "https://sandbox.zenodo.org/" 
 BASE_URL = 'https://zenodo.org/'
-ACCESS_TOKEN =  "z9FKfVJg1gHzqeV7r74XCMqY2Af6kdHScMFyftdcCN39alQEjb8R9HH5ol9g" #my sandbox key
-ACCESS_TOKEN = 'gyDP5xUfx8E9omQ3GPr9X57aKRQ5chjth8OzMDU0p8JO7o3EuJucAtxVeRyg' #ceda zenodo key
+ACCESS_TOKEN =  "*********" #my sandbox key
+ACCESS_TOKEN = '**********' #ceda zenodo key
 
 class Transfer_to_zenodo:
     '''This class is responsible for transferring records from Cedadocs to Zenodo
